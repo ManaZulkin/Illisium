@@ -29,7 +29,7 @@ public class IllisiumApplication {
 
         http.authorizeHttpRequests(requests ->requests
                 .requestMatchers("/gm/**").hasRole("ADMIN")
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**", "/common/**").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
         )
                 .formLogin(form -> form.loginPage("/auth/login")
