@@ -1,22 +1,24 @@
-package com.illisium.models.armor;
+package com.illisium.models.equpment;
 
-import com.illisium.bin.INT.IArmor;
+import com.illisium.models.DBHelper.IdArmor;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ChestArmor")
-public class ChestArmor extends DBArmor {
+@Table(name = "Armor")
+@IdClass(IdArmor.class)
+public class Armor {
 
-    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    @Column(name = "name")
-    String name;
+    @Id
+    @Column(name = "armorName")
+    private String armorName;
     @Column(name = "rare")
     String rare;
-    @Column(name = "type")
-    String type;
+    @Id
+    @Column(name = "armorType")
+    private String armorType;
     @Column(name = "durability")
     int   durability ;
     @Column(name = "strange")
@@ -33,13 +35,14 @@ public class ChestArmor extends DBArmor {
     @Column(name = "stamina")
     int stamina;
 
-    public ChestArmor() {
+    public Armor() {
     }
 
-    public ChestArmor(String name, String rare, String type, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
-        this.name = name;
+    public Armor(int id, String name, String rare, String type, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
+        this.id = id;
+        this.armorName = name;
         this.rare = rare;
-        this.type = type;
+        this.armorType = type;
         this.durability = durability;
         this.strange = strange;
         this.intelligent = intelligent;
@@ -58,11 +61,11 @@ public class ChestArmor extends DBArmor {
     }
 
     public String getName() {
-        return name;
+        return armorName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.armorName = name;
     }
 
     public String getRare() {
@@ -74,11 +77,11 @@ public class ChestArmor extends DBArmor {
     }
 
     public String getType() {
-        return type;
+        return armorType;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.armorType = type;
     }
 
     public int getDurability() {

@@ -1,10 +1,8 @@
 package com.illisium.config.controlers;
 
 import com.illisium.bin.IMPL.Armor;
-import com.illisium.bin.INT.IArmor;
 import com.illisium.bin.en.ArmorType;
-import com.illisium.config.repositories.ChestArmorRepository;
-import com.illisium.models.armor.DBArmor;
+import com.illisium.config.repositories.ArmorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/gm")
 public class AdmCreationController {
 
-    private final ChestArmorRepository chestArmorRepository;
+    private final ArmorRepository ArmorRepository;
 
     @Autowired
-    public AdmCreationController(ChestArmorRepository chestArmorRepository) {
-        this.chestArmorRepository = chestArmorRepository;
+    public AdmCreationController(ArmorRepository ArmorRepository) {
+        this.ArmorRepository = ArmorRepository;
     }
 
     @GetMapping("/create")
@@ -52,7 +50,7 @@ public class AdmCreationController {
     public String saveArmor(@ModelAttribute Armor armor){
         if (armor.getInfo().getType().equalsIgnoreCase(ArmorType.CHEST.name())){
             try{
-                DBArmor DBArmor = convertToDatabaseStyle(armor);
+                System.out.println("!!!");
 
             }catch (Exception e){
                 return "redirect:/common/error";
@@ -61,25 +59,8 @@ public class AdmCreationController {
         return "redirect:/common/success";
     }
 
-    public DBArmor convertToDatabaseStyle(Armor armor){
-            DBArmor DBArmor = new DBArmor();
-            DBArmor.setAgility(armor.getStats().getAgility());
-            DBArmor.setCharisma(armor.getStats().getCharisma());
-            DBArmor.setDurability(armor.getStats().getDurability());
-            DBArmor.setIntelligent(armor.getStats().getIntelligent());
-            DBArmor.setLuck(armor.getStats().getLuck());
-            DBArmor.setStamina(armor.getStats().getStamina());
-            DBArmor.setStrange(armor.getStats().getStrange());
-            DBArmor.setType(armor.getInfo().getType());
-            DBArmor.setRare(armor.getInfo().getRare());
-            DBArmor.setName(armor.getInfo().getName());
-        return DBArmor;
-    }
 
-    public IArmor checkTypeOfArmor(DBArmor DBArmor){
-        IArmor armor = null;
-        return armor;
-    }
+
 
 
 }
