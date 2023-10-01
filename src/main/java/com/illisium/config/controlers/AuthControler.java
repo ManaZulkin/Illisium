@@ -29,7 +29,7 @@ public class AuthControler {
         return "auth/login";
     }
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("person")Person person){
+    public String registrationPage(@ModelAttribute("person")Person person, @ModelAttribute("role") String role){
         return "auth/registration";
     }
     @PostMapping("/registration")

@@ -6,7 +6,57 @@
 </head>
 <body>
     <h2>Here you can create armor</h2>
-
+    <br/>
+    <table th:border="global" th:align="center">
+       <thead>
+           <tr>
+               <th rowspan="2">Name</th>
+               <th rowspan="2">Type</th>
+               <th rowspan="2">Rare</th>
+               <th colspan="6">Stats</th>
+           </tr>
+           <tr>
+               <th>STR</th>
+               <th>AGI</th>
+               <th>INT</th>
+               <th>STA</th>
+               <th>LUCK</th>
+               <th>CHAR</th>
+           </tr>
+       </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    <br/>
     <form th:method="post" name="success" >
         <input type="submit" value="Save" >
     </form>

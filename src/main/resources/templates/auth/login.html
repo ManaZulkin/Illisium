@@ -15,11 +15,6 @@
     <label for="password">Введіть пароль: </label>
     <input type="password" name="password" id="password"/>
     <br/>
-    <label for="roles">Role: </label>
-    <select name="roles" id="roles">
-        <option value="Game Master">Game master</option>
-        <option value="Player">Player</option>
-    </select>
     <input type="submit" value="Login"/>
 
     <div th:if="${param.error}" style="color: red">
