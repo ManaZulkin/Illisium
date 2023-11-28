@@ -1,4 +1,4 @@
-package com.illisium.bin.base;
+package com.illisium.basic.base;
 
 public class InfoEquip {
     private String type, name, rare;

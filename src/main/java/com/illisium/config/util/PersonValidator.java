@@ -1,7 +1,7 @@
 package com.illisium.config.util;
 
-import com.illisium.config.services.PersonDetailsService;
-import com.illisium.models.Person;
+import com.illisium.config.sequrity.PersonDetailsService;
+import com.illisium.config.sequrity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;

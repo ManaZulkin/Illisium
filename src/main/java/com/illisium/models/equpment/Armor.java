@@ -12,15 +12,15 @@ public class Armor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     @Id
-    @Column(name = "armorName")
+    @Column(name = "armor_Name")
     private String armorName;
     @Column(name = "rare")
     String rare;
     @Id
-    @Column(name = "armorType")
+    @Column(name = "armor_Type")
     private String armorType;
     @Column(name = "durability")
-    int   durability ;
+    int   durability = 10;
     @Column(name = "strange")
     int strange;
 
@@ -138,5 +138,22 @@ public class Armor {
 
     public void setStamina(int stamina) {
         this.stamina = stamina;
+    }
+
+    @Override
+    public String toString() {
+        return "Armor{" +
+                "id=" + id +
+                ", armorName='" + armorName + '\'' +
+                ", rare='" + rare + '\'' +
+                ", armorType='" + armorType + '\'' +
+                ", durability=" + durability +
+                ", strange=" + strange +
+                ", intelligent=" + intelligent +
+                ", agility=" + agility +
+                ", charisma=" + charisma +
+                ", luck=" + luck +
+                ", stamina=" + stamina +
+                '}';
     }
 }

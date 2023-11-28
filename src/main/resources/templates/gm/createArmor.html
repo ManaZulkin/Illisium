@@ -5,9 +5,10 @@
     <title>Armor</title>
 </head>
 <body>
-    <h2>Here you can create armor</h2>
+<form th:method="post" th:action="@{/gm/createArmor}" th:object="${armor}">
+<h2>Here you can create armor</h2>
     <br/>
-    <table th:border="global" th:align="center">
+    <table th:border="global" th:align="center" >
        <thead>
            <tr>
                <th rowspan="2">Name</th>
@@ -27,38 +28,43 @@
             <tbody>
             <tr>
                 <td>
-                    <input type="text">
+                    <input type="text" th:field="*{name}" id = "armorName"/>
                 </td>
                 <td>
-                    <input type="text">
+
+                    <select th:field="*{type}">
+                        <option th:each="i : ${T(com.illisium.basic.en.ArmorType).values()}" th:value="${i}" th:text="${i}"/>
+                    </select>
                 </td>
                 <td>
-                    <input type="text">
+                    <select th:field="*{rare}">
+                        <option th:each="i: ${T(com.illisium.basic.en.Rare).values()}" th:value="${i}" th:text="${i}"/>
+                    </select>
+
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{strange}"  id = "STR"/>
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{agility}" id = "AGI"/>
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{intelligent}" id = "INT"/>
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{stamina}" id = "STA"/>
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{luck}" id = "LUCK"/>
                 </td>
                 <td>
-                    <input type="text">
+                    <input type="number" th:field="*{charisma}" id="CHAR"/>
                 </td>
             </tr>
             </tbody>
         </table>
     <br/>
-    <form th:method="post" name="success" >
-        <input type="submit" value="Save" >
-    </form>
+        <input type="submit" value="Save" />
+</form>
 </body>
 </html>

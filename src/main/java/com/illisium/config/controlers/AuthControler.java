@@ -1,8 +1,8 @@
 package com.illisium.config.controlers;
 
-import com.illisium.config.services.RegistrationService;
+import com.illisium.config.sequrity.RegistrationService;
 import com.illisium.config.util.PersonValidator;
-import com.illisium.models.Person;
+import com.illisium.config.sequrity.Person;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class AuthControler {
         return "auth/login";
     }
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("person")Person person, @ModelAttribute("role") String role){
+    public String registrationPage(@ModelAttribute("person")Person person, @ModelAttribute( name = "role") String role){
         return "auth/registration";
     }
     @PostMapping("/registration")
@@ -40,5 +40,10 @@ public class AuthControler {
         registrationService.register(person);
 
         return "redirect:/auth/startPage";
+    }
+
+    @GetMapping("/StartPage")
+    public String startPage(){
+        return "auth/StartPage";
     }
 }

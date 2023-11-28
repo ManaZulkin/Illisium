@@ -1,6 +1,6 @@
 package com.illisium.config.repositories;
 
-import com.illisium.models.Person;
+import com.illisium.config.sequrity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

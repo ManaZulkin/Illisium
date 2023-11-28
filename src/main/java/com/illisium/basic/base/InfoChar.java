@@ -1,4 +1,4 @@
-package com.illisium.bin.base;
+package com.illisium.basic.base;
 
 public class InfoChar {
     String name, fullName, className;

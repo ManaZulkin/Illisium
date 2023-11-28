@@ -1,8 +1,8 @@
-package com.illisium.config.services;
+package com.illisium.config.sequrity;
 
 import com.illisium.config.repositories.PeopleRepository;
 import com.illisium.config.sequrity.PersonDetails;
-import com.illisium.models.Person;
+import com.illisium.config.sequrity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

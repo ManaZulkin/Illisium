@@ -1,4 +1,4 @@
-package com.illisium.bin.base;
+package com.illisium.basic.base;
 
 public class Stats {
     int strange, intelligent, agility, charisma, luck, stamina, durability ;

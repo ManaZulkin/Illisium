@@ -1,8 +1,8 @@
-package com.illisium.bin.IMPL;
+package com.illisium.basic.IMPL;
 
-import com.illisium.bin.INT.IArmor;
-import com.illisium.bin.base.InfoEquip;
-import com.illisium.bin.base.Stats;
+import com.illisium.basic.INTERFACE.IArmor;
+import com.illisium.basic.base.InfoEquip;
+import com.illisium.basic.base.Stats;
 
 public class Armor implements IArmor {
     private InfoEquip info;

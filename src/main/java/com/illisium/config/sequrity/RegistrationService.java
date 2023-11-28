@@ -1,7 +1,7 @@
-package com.illisium.config.services;
+package com.illisium.config.sequrity;
 
 import com.illisium.config.repositories.PeopleRepository;
-import com.illisium.models.Person;
+import com.illisium.config.sequrity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

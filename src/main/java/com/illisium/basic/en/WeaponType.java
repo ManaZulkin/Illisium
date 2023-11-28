@@ -1,4 +1,4 @@
-package com.illisium.bin.en;
+package com.illisium.basic.en;
 
 public enum WeaponType {
     ONE_HAND_SWORD,

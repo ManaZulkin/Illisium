@@ -1,9 +1,5 @@
 package com.illisium;
 
-import com.illisium.bin.IMPL.Armor;
-import com.illisium.bin.base.Stats;
-import com.illisium.bin.en.ArmorType;
-import com.illisium.bin.en.Rare;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -29,12 +25,13 @@ public class IllisiumApplication {
 
         http.authorizeHttpRequests(requests ->requests
                 .requestMatchers("/gm/**").hasRole("ADMIN")
-                .requestMatchers("/auth/**", "/common/**").permitAll()
+                .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/auth/**", "/messege/**").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
         )
                 .formLogin(form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/process_login")
-                        .defaultSuccessUrl("/startPage")
+                        .defaultSuccessUrl("/auth/StartPage")
                         .failureUrl("/auth/login?error")
                 )
                 .logout(logout ->logout
@@ -44,4 +41,5 @@ public class IllisiumApplication {
 
         return http.build();
     }
+
 }
