@@ -5,6 +5,7 @@ import com.illisium.basic.en.Rare;
 import com.illisium.config.repositories.ArmorRepository;
 import com.illisium.config.services.AdminService;
 import com.illisium.models.equpment.Armor;
+import com.illisium.models.equpment.Weapon;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,8 +44,14 @@ public class AdmCreationController {
     }
 
     @GetMapping("/createWeapon")
-    public String createWeapon(){
+    public String createWeapon(@ModelAttribute(name = "weapon")Weapon weapon){
         return "/gm/createWeapon";
+    }
+
+    @PostMapping("/createWeapon")
+    public String saveWeapon(@ModelAttribute(name = "weapon")Weapon weapon){
+        adminService.saveWeapon(weapon);
+        return "redirect:/gm/createWeapon";
     }
 
     @GetMapping("/createArmor")

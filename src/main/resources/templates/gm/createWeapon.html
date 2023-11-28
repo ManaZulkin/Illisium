@@ -2,9 +2,73 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Weapon</title>
+    <title>Armor</title>
 </head>
 <body>
+<form th:method="post" th:action="@{/gm/createWeapon}" th:object="${weapon}">
     <h2>Here you can create weapon</h2>
+    <br/>
+    <table th:border="global" th:align="center" >
+        <thead>
+        <tr>
+            <th rowspan="2">Name</th>
+            <th rowspan="2">Type</th>
+            <th rowspan="2">Rare</th>
+            <th rowspan="2">Damage</th>
+            <th colspan="6">Stats</th>
+        </tr>
+        <tr>
+            <th>STR</th>
+            <th>AGI</th>
+            <th>INT</th>
+            <th>STA</th>
+            <th>LUCK</th>
+            <th>CHAR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <input type="text" th:field="*{weaponName}" id = "weaponName"/>
+            </td>
+            <td>
+
+                <select th:field="*{weaponType}">
+                    <option th:each="i : ${T(com.illisium.basic.en.WeaponType).values()}" th:value="${i}" th:text="${i}"/>
+                </select>
+            </td>
+            <td>
+                <select th:field="*{rare}">
+                    <option th:each="i: ${T(com.illisium.basic.en.Rare).values()}" th:value="${i}" th:text="${i}"/>
+                </select>
+
+            </td>
+            <td>
+                <input type="number" th:field="*{damage}" id="DMG"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{strange}"  id = "STR"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{agility}" id = "AGI"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{intelligent}" id = "INT"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{stamina}" id = "STA"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{luck}" id = "LUCK"/>
+            </td>
+            <td>
+                <input type="number" th:field="*{charisma}" id="CHAR"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <input type="submit" value="Save" />
+</form>
 </body>
 </html>
