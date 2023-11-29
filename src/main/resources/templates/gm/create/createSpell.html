@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create spell</title>
+</head>
+<body>
+    <form  th:object="${spell}" th:method="post" th:action="@{/gm/create/createSpell}">
+        <table th:border="global" th:align="left">
+           <thead>
+           <tr>
+               <th>Name </th>
+               <th>Element </th>
+               <th>Type </th>
+               <th>Effect </th>
+               <th>Range </th>
+               <th>Level </th>
+               <th>Damage </th>
+               <th>Cooldown </th>
+               <th width="50%" >Description </th>
+           </tr>
+           </thead>
+            <tbody>
+                <tr>
+                    <td><input th:field="${spell.spellName}" type="text" id="name"/></td>
+                    <td>
+                        <select th:field="${spell.element}" id="element">
+                            <option th:each="i : ${T(com.illisium.basic.en.ElementType).values()}" th:value="${i}" th:text="${i}"/>
+                        </select></td>
+                    <td><select th:field="${spell.type}" id="Type">
+                        <option th:each="i : ${T(com.illisium.basic.en.SpellsType).values()}" th:value="${i}" th:text="${i}"/>
+                    </select></td>
+                    <td><select th:field="${spell.effect}" id="Effect">
+                        <option th:each="i : ${T(com.illisium.basic.en.EffectsType).values()}" th:value="${i}" th:text="${i}"/>
+                    </select></td>
+                    <td><select th:field="${spell.range}" id="range">
+                        <option th:each="i : ${T(com.illisium.basic.en.Range).values()}" th:value="${i}" th:text="${i}"/>
+                    </select></td>
+                    <td><input th:field="${spell.lvl}" type="number" id="lvl"/></td>
+                    <td><input th:field="${spell.damage}" type="number" id="damage"/></td>
+                    <td><input th:field="${spell.cd}" type="number" id="cd"/></td>
+                    <td><input th:field="${spell.description}" type="text" id="description" size="150%"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+    <input type="submit" value="Save">
+    </form>
+
+</body>

@@ -14,6 +14,12 @@ public class HelloControler {
         this.adminService = adminService;
     }
 
+
+    @GetMapping("gm/gmStartPage")
+    public String gmStartPage(){
+        return "/gm/gmStartPage";
+    }
+
 //    @GetMapping("/auth/startPage")
 //    public String letsStart(){
 //        return "/auth/StartPage";
