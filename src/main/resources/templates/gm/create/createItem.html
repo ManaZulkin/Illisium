@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Item</title>
+</head>
+<body>
+<form  th:object="${item}" th:method="post" th:action="@{/gm/create/createItem}">
+    <table th:border="global" th:align="left">
+        <thead>
+        <tr>
+            <th>Name </th>
+            <th>Type </th>
+            <th>Usable </th>
+            <th>Stackable </th>
+            <th width="50%" >Description </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input th:field="${item.itemName}" type="text" id="name"/></td>
+            <td><select th:field="${item.itemType}" id="Type">
+                <option th:each="i : ${T(com.illisium.basic.en.ItemType).values()}" th:value="${i}" th:text="${i}"/>
+            </select></td>
+            <td><input th:field="${item.usable}" type="checkbox" id="usable"/></td>
+            <td><input th:field="${item.stackable}" type="checkbox" id="stackable"/></td>
+            <td><input th:field="${item.description}" type="text" id="description" size="150%"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <input type="submit" value="Save">
+</form>
+
+
+</body>
+</html>

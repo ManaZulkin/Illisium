@@ -4,6 +4,7 @@ import com.illisium.config.services.AdminService;
 import com.illisium.models.abylities.Magick;
 import com.illisium.models.abylities.Skills;
 import com.illisium.models.equpment.Armor;
+import com.illisium.models.equpment.Item;
 import com.illisium.models.equpment.Weapon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,5 +76,16 @@ public class AdmCreationController {
     public String saveSkill(@ModelAttribute(name = "Skill")Skills skills){
         adminService.saveSkill(skills);
         return "redirect:/gm/create/createSpell";
+    }
+
+    @GetMapping("/createItem")
+    public String createItem(@ModelAttribute(name = "item")Item item){
+        return "/gm/create/createItem";
+    }
+
+    @PostMapping("/createItem")
+    public String saveItem(@ModelAttribute(name = "item")Item item){
+        adminService.saveItem(item);
+        return "redirect:/gm/create/createItem";
     }
 }
