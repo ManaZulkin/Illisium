@@ -1,6 +1,6 @@
-package com.illisium.models.abylities;
+package com.illisium.modelsDB.abylities;
 
-import com.illisium.models.DBHelper.IdSkill;
+import com.illisium.modelsDB.DBHelper.IdSkill;
 import jakarta.persistence.*;
 
 @Entity

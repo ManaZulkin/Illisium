@@ -1,4 +1,4 @@
-package com.illisium.models.DBHelper;
+package com.illisium.modelsDB.DBHelper;
 
 import java.io.Serializable;
 import java.util.Objects;

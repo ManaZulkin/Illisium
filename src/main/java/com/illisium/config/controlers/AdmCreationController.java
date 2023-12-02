@@ -1,11 +1,11 @@
 package com.illisium.config.controlers;
 
 import com.illisium.config.services.AdminService;
-import com.illisium.models.abylities.Magick;
-import com.illisium.models.abylities.Skills;
-import com.illisium.models.equpment.Armor;
-import com.illisium.models.equpment.Item;
-import com.illisium.models.equpment.Weapon;
+import com.illisium.modelsDB.abylities.Magick;
+import com.illisium.modelsDB.abylities.Skills;
+import com.illisium.modelsDB.equpment.Armor;
+import com.illisium.modelsDB.equpment.Item;
+import com.illisium.modelsDB.equpment.Weapon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

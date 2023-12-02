@@ -2,7 +2,7 @@ package com.illisium.basic.IMPL;
 
 import com.illisium.basic.base.InfoEquip;
 import com.illisium.basic.base.Stats;
-import com.illisium.basic.INTERFACE.IWeapon;
+import com.illisium.basic.Markers.IWeapon;
 
 public class Weapon implements IWeapon {
     private Stats stats;

@@ -1,26 +1,29 @@
-package com.illisium.models.equpment;
+package com.illisium.modelsDB.equpment;
 
-import com.illisium.models.DBHelper.IdArmor;
+import com.illisium.basic.Markers.IWeapon;
+import com.illisium.modelsDB.DBHelper.IdWeapon;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Armor")
-@IdClass(IdArmor.class)
-public class Armor {
-
+@IdClass(IdWeapon.class)
+@Table(name = "weapon")
+public class Weapon implements IWeapon {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     @Id
-    @Column(name = "armor_Name")
-    private String armorName;
+    @Column(name = "weapon_Name")
+    private String weaponName;
     @Column(name = "rare")
     String rare;
     @Id
-    @Column(name = "armor_Type")
-    private String armorType;
+    @Column(name = "weapon_Type")
+    private String weaponType;
+
+    @Column(name = "DMG")
+    int damage;
     @Column(name = "durability")
-    int   durability = 10;
+    int durability = 10;
     @Column(name = "strange")
     int strange;
 
@@ -35,14 +38,19 @@ public class Armor {
     @Column(name = "stamina")
     int stamina;
 
-    public Armor() {
+    public Weapon() {
     }
 
-    public Armor(int id, String name, String rare, String type, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
-        this.id = id;
-        this.armorName = name;
+    public Weapon(String weaponName, String weaponType) {
+        this.weaponName = weaponName;
+        this.weaponType = weaponType;
+    }
+
+    public Weapon(String weaponName, String rare, String weaponType, int damage, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
+        this.weaponName = weaponName;
         this.rare = rare;
-        this.armorType = type;
+        this.weaponType = weaponType;
+        this.damage = damage;
         this.durability = durability;
         this.strange = strange;
         this.intelligent = intelligent;
@@ -50,6 +58,24 @@ public class Armor {
         this.charisma = charisma;
         this.luck = luck;
         this.stamina = stamina;
+    }
+
+    @Override
+    public String toString() {
+        return "Weapon{" +
+                "id=" + id +
+                ", weaponName='" + weaponName + '\'' +
+                ", rare='" + rare + '\'' +
+                ", weaponType='" + weaponType + '\'' +
+                ", damage=" + damage +
+                ", durability=" + durability +
+                ", strange=" + strange +
+                ", intelligent=" + intelligent +
+                ", agility=" + agility +
+                ", charisma=" + charisma +
+                ", luck=" + luck +
+                ", stamina=" + stamina +
+                '}';
     }
 
     public int getId() {
@@ -60,12 +86,12 @@ public class Armor {
         this.id = id;
     }
 
-    public String getName() {
-        return armorName;
+    public String getWeaponName() {
+        return weaponName;
     }
 
-    public void setName(String name) {
-        this.armorName = name;
+    public void setWeaponName(String weapon_Name) {
+        this.weaponName = weapon_Name;
     }
 
     public String getRare() {
@@ -76,16 +102,24 @@ public class Armor {
         this.rare = rare;
     }
 
-    public String getType() {
-        return armorType;
+    public String getWeaponType() {
+        return weaponType;
     }
 
-    public void setType(String type) {
-        this.armorType = type;
+    public void setWeaponType(String weapon_Type) {
+        this.weaponType = weapon_Type;
     }
 
     public int getDurability() {
         return durability;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public void setDurability(int durability) {
@@ -138,22 +172,5 @@ public class Armor {
 
     public void setStamina(int stamina) {
         this.stamina = stamina;
-    }
-
-    @Override
-    public String toString() {
-        return "Armor{" +
-                "id=" + id +
-                ", armorName='" + armorName + '\'' +
-                ", rare='" + rare + '\'' +
-                ", armorType='" + armorType + '\'' +
-                ", durability=" + durability +
-                ", strange=" + strange +
-                ", intelligent=" + intelligent +
-                ", agility=" + agility +
-                ", charisma=" + charisma +
-                ", luck=" + luck +
-                ", stamina=" + stamina +
-                '}';
     }
 }

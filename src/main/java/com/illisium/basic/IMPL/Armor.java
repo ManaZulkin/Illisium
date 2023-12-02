@@ -1,6 +1,6 @@
 package com.illisium.basic.IMPL;
 
-import com.illisium.basic.INTERFACE.IArmor;
+import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.base.InfoEquip;
 import com.illisium.basic.base.Stats;
 

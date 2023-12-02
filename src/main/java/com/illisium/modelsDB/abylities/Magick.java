@@ -1,6 +1,6 @@
-package com.illisium.models.abylities;
+package com.illisium.modelsDB.abylities;
 
-import com.illisium.models.DBHelper.IdMagick;
+import com.illisium.modelsDB.DBHelper.IdMagick;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

@@ -1,11 +1,11 @@
 package com.illisium.config.services;
 
 import com.illisium.config.repositories.*;
-import com.illisium.models.abylities.Magick;
-import com.illisium.models.abylities.Skills;
-import com.illisium.models.equpment.Armor;
-import com.illisium.models.equpment.Item;
-import com.illisium.models.equpment.Weapon;
+import com.illisium.modelsDB.abylities.Magick;
+import com.illisium.modelsDB.abylities.Skills;
+import com.illisium.modelsDB.equpment.Armor;
+import com.illisium.modelsDB.equpment.Item;
+import com.illisium.modelsDB.equpment.Weapon;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

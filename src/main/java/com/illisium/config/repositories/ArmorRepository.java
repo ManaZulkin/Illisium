@@ -1,6 +1,6 @@
 package com.illisium.config.repositories;
 
-import com.illisium.models.equpment.Armor;
+import com.illisium.modelsDB.equpment.Armor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.illisium.config.repositories;
 
-import com.illisium.models.abylities.Magick;
+import com.illisium.modelsDB.abylities.Magick;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

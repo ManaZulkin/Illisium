@@ -1,6 +1,6 @@
-package com.illisium.models.equpment;
+package com.illisium.modelsDB.equpment;
 
-import com.illisium.models.DBHelper.IdItem;
+import com.illisium.modelsDB.DBHelper.IdItem;
 import jakarta.persistence.*;
 
 @Entity

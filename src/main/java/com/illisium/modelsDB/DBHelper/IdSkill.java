@@ -1,6 +1,4 @@
-package com.illisium.models.DBHelper;
-
-import org.hibernate.boot.archive.scan.internal.ScanResultImpl;
+package com.illisium.modelsDB.DBHelper;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package com.illisium.config.repositories;
 
-import com.illisium.models.equpment.Item;
+import com.illisium.modelsDB.equpment.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
