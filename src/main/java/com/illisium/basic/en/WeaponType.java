@@ -1,8 +1,8 @@
 package com.illisium.basic.en;
 
 public enum WeaponType {
-    ONE_HAND_SWORD,
-    DOUBLE_HAND_SWORD,
+    SWORD,
+    Меч,
     KNIFE,
     BOW,
     LONG_BOW,

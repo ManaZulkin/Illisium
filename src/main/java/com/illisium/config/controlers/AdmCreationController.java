@@ -3,6 +3,7 @@ package com.illisium.config.controlers;
 import com.illisium.config.services.AdminService;
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
+import com.illisium.modelsDB.creature.Monster;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
@@ -29,12 +30,26 @@ public class AdmCreationController {
         return "/gm/create/creationPage";
     }
 
-    @GetMapping("/createMonster")
-    public String createMonster(){
-        return "/gm/create/createMonster";
+    @GetMapping("/createMonster1")
+    public String createMonster(@ModelAttribute(name = "monster")Monster monster){
+        return "/gm/create/createMonster1";
     }
 
+    @PostMapping("/createMonster1")
+    public String createMonsterToStep2(@ModelAttribute(name = "monster")Monster monster){
+        return "redirect:/gm/create/createMonster2";
+    }
 
+    @GetMapping("/createMonster2")
+    public String createMonsterSteap2(@ModelAttribute(name = "monster")Monster monster){
+        return "/gm/create/createMonster2";
+    }
+
+    @PostMapping("/createMonster2")
+    public String CreateMonsterPreview(@ModelAttribute(name = "monster")Monster monster){
+
+        return "redirect:/gm/create/previewMonster";
+    }
     @GetMapping("/createWeapon")
     public String createWeapon(@ModelAttribute(name = "weapon")Weapon weapon){
         return "/gm/create/createWeapon";
@@ -88,5 +103,14 @@ public class AdmCreationController {
     public String saveItem(@ModelAttribute(name = "item")Item item){
         adminService.saveItem(item);
         return "redirect:/gm/create/createItem";
+    }
+
+    @GetMapping("/previewMonster")
+    public String monsterPreview(){
+        return "/gm/create/previewMonster";
+    }
+    @PostMapping("/previewMonster")
+    public String Monster(){
+        return "redirect:/gm/createMonster1";
     }
 }

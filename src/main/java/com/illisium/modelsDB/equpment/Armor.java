@@ -1,5 +1,6 @@
 package com.illisium.modelsDB.equpment;
 
+import com.illisium.basic.Markers.Drop;
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.base.Stats;
 import com.illisium.modelsDB.DBHelper.IdArmor;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Armor")
 @IdClass(IdArmor.class)
-public class Armor implements Serializable, IArmor {
+public class Armor implements Serializable, IArmor, Drop {
     @Serial
     private static final  long serialVersionUID = 2L;
     @Column(name = "id")

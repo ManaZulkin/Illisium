@@ -1,5 +1,6 @@
 package com.illisium.modelsDB.equpment;
 
+import com.illisium.basic.Markers.Drop;
 import com.illisium.basic.Markers.IWeapon;
 import com.illisium.basic.base.Stats;
 import com.illisium.modelsDB.DBHelper.IdWeapon;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @IdClass(IdWeapon.class)
 @Table(name = "weapon")
-public class Weapon implements IWeapon, Serializable {
+public class Weapon implements IWeapon, Serializable, Drop {
     @Serial
     private static final long serialVersionUID = 1L;
     @Column(name = "id")
@@ -31,23 +32,27 @@ public class Weapon implements IWeapon, Serializable {
 
     private Stats stats;
 
+    private boolean twohand;
+
     public Weapon() {
     }
 
     public Weapon(String name, String type) {
         this.name = name;
         this.type = type;
+
     }
 
     @Override
     public String toString() {
         return "Weapon{" +
                 "id=" + id +
-                ", weaponName='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", rare='" + rare + '\'' +
-                ", weaponType='" + type + '\'' +
+                ", type='" + type + '\'' +
                 ", damage=" + damage +
                 ", stats=" + stats +
+                ", twohand=" + twohand +
                 '}';
     }
 
@@ -97,5 +102,13 @@ public class Weapon implements IWeapon, Serializable {
 
     public void setStats(Stats stats) {
         this.stats = stats;
+    }
+
+    public boolean isTwohand() {
+        return twohand;
+    }
+
+    public void setTwohand(boolean twohand) {
+        this.twohand = twohand;
     }
 }
