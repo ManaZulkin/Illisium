@@ -1,80 +1,53 @@
 package com.illisium.modelsDB.equpment;
 
 import com.illisium.basic.Markers.IWeapon;
+import com.illisium.basic.base.Stats;
 import com.illisium.modelsDB.DBHelper.IdWeapon;
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @IdClass(IdWeapon.class)
 @Table(name = "weapon")
-public class Weapon implements IWeapon {
+public class Weapon implements IWeapon, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     @Id
     @Column(name = "weapon_Name")
-    private String weaponName;
+    private String name;
     @Column(name = "rare")
     String rare;
     @Id
     @Column(name = "weapon_Type")
-    private String weaponType;
+    private String type;
 
     @Column(name = "DMG")
     int damage;
-    @Column(name = "durability")
-    int durability = 10;
-    @Column(name = "strange")
-    int strange;
 
-    @Column(name = "intelligent")
-    int intelligent;
-    @Column(name = "agility")
-    int agility;
-    @Column(name = "charisma")
-    int charisma;
-    @Column(name = "luck")
-    int luck;
-    @Column(name = "stamina")
-    int stamina;
+    private Stats stats;
 
     public Weapon() {
     }
 
-    public Weapon(String weaponName, String weaponType) {
-        this.weaponName = weaponName;
-        this.weaponType = weaponType;
-    }
-
-    public Weapon(String weaponName, String rare, String weaponType, int damage, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
-        this.weaponName = weaponName;
-        this.rare = rare;
-        this.weaponType = weaponType;
-        this.damage = damage;
-        this.durability = durability;
-        this.strange = strange;
-        this.intelligent = intelligent;
-        this.agility = agility;
-        this.charisma = charisma;
-        this.luck = luck;
-        this.stamina = stamina;
+    public Weapon(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "Weapon{" +
                 "id=" + id +
-                ", weaponName='" + weaponName + '\'' +
+                ", weaponName='" + name + '\'' +
                 ", rare='" + rare + '\'' +
-                ", weaponType='" + weaponType + '\'' +
+                ", weaponType='" + type + '\'' +
                 ", damage=" + damage +
-                ", durability=" + durability +
-                ", strange=" + strange +
-                ", intelligent=" + intelligent +
-                ", agility=" + agility +
-                ", charisma=" + charisma +
-                ", luck=" + luck +
-                ", stamina=" + stamina +
+                ", stats=" + stats +
                 '}';
     }
 
@@ -86,12 +59,12 @@ public class Weapon implements IWeapon {
         this.id = id;
     }
 
-    public String getWeaponName() {
-        return weaponName;
+    public String getName() {
+        return name;
     }
 
-    public void setWeaponName(String weapon_Name) {
-        this.weaponName = weapon_Name;
+    public void setName(String weaponName) {
+        this.name = weaponName;
     }
 
     public String getRare() {
@@ -102,16 +75,12 @@ public class Weapon implements IWeapon {
         this.rare = rare;
     }
 
-    public String getWeaponType() {
-        return weaponType;
+    public String getType() {
+        return type;
     }
 
-    public void setWeaponType(String weapon_Type) {
-        this.weaponType = weapon_Type;
-    }
-
-    public int getDurability() {
-        return durability;
+    public void setType(String weaponType) {
+        this.type = weaponType;
     }
 
     public int getDamage() {
@@ -122,55 +91,11 @@ public class Weapon implements IWeapon {
         this.damage = damage;
     }
 
-    public void setDurability(int durability) {
-        this.durability = durability;
+    public Stats getStats() {
+        return stats;
     }
 
-    public int getStrange() {
-        return strange;
-    }
-
-    public void setStrange(int strange) {
-        this.strange = strange;
-    }
-
-    public int getIntelligent() {
-        return intelligent;
-    }
-
-    public void setIntelligent(int intelligent) {
-        this.intelligent = intelligent;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public int getCharisma() {
-        return charisma;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
-    }
-
-    public int getLuck() {
-        return luck;
-    }
-
-    public void setLuck(int luck) {
-        this.luck = luck;
-    }
-
-    public int getStamina() {
-        return stamina;
-    }
-
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 }

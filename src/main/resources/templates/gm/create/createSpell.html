@@ -22,7 +22,7 @@
            </thead>
             <tbody>
                 <tr>
-                    <td><input th:field="${spell.spellName}" type="text" id="name"/></td>
+                    <td><input th:field="${spell.name}" type="text" id="name"/></td>
                     <td>
                         <select th:field="${spell.element}" id="element">
                             <option th:each="i : ${T(com.illisium.basic.en.ElementType).values()}" th:value="${i}" th:text="${i}"/>

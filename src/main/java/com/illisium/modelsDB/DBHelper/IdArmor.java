@@ -6,15 +6,15 @@ import java.util.Objects;
 
 public class IdArmor implements Serializable {
 
-    private String armorName;
-    private String armorType;
+    private String name;
+    private String type;
 
     public IdArmor() {
     }
 
-    public IdArmor(String armorName, String armorType) {
-        this.armorName = armorName;
-        this.armorType = armorType;
+    public IdArmor(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class IdArmor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IdArmor idArmor = (IdArmor) o;
-        return Objects.equals(armorName, idArmor.armorName) && Objects.equals(armorType, idArmor.armorType);
+        return Objects.equals(name, idArmor.name) && Objects.equals(type, idArmor.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(armorName, armorType);
+        return Objects.hash(name, type);
     }
 }

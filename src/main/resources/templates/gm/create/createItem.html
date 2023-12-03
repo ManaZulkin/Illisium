@@ -18,8 +18,8 @@
         </thead>
         <tbody>
         <tr>
-            <td><input th:field="${item.itemName}" type="text" id="name"/></td>
-            <td><select th:field="${item.itemType}" id="Type">
+            <td><input th:field="${item.name}" type="text" id="name"/></td>
+            <td><select th:field="${item.type}" id="Type">
                 <option th:each="i : ${T(com.illisium.basic.en.ItemType).values()}" th:value="${i}" th:text="${i}"/>
             </select></td>
             <td><input th:field="${item.usable}" type="checkbox" id="usable"/></td>

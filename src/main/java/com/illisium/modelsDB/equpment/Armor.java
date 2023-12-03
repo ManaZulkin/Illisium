@@ -1,55 +1,44 @@
 package com.illisium.modelsDB.equpment;
 
+import com.illisium.basic.Markers.IArmor;
+import com.illisium.basic.base.Stats;
 import com.illisium.modelsDB.DBHelper.IdArmor;
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Armor")
 @IdClass(IdArmor.class)
-public class Armor {
-
+public class Armor implements Serializable, IArmor {
+    @Serial
+    private static final  long serialVersionUID = 2L;
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     @Id
     @Column(name = "armor_Name")
-    private String armorName;
+    private String name;
     @Column(name = "rare")
     String rare;
     @Id
     @Column(name = "armor_Type")
-    private String armorType;
-    @Column(name = "durability")
-    int   durability = 10;
-    @Column(name = "strange")
-    int strange;
-
-    @Column(name = "intelligent")
-    int intelligent;
-    @Column(name = "agility")
-    int agility;
-    @Column(name = "charisma")
-    int charisma;
-    @Column(name = "luck")
-    int luck;
-    @Column(name = "stamina")
-    int stamina;
+    private String type;
+    private Stats stats;
 
     public Armor() {
     }
 
-    public Armor(int id, String name, String rare, String type, int durability, int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
-        this.id = id;
-        this.armorName = name;
-        this.rare = rare;
-        this.armorType = type;
-        this.durability = durability;
-        this.strange = strange;
-        this.intelligent = intelligent;
-        this.agility = agility;
-        this.charisma = charisma;
-        this.luck = luck;
-        this.stamina = stamina;
+    @Override
+    public String toString() {
+        return "Armor{" +
+                "id=" + id +
+                ", armorName='" + name + '\'' +
+                ", rare='" + rare + '\'' +
+                ", armorType='" + type + '\'' +
+                ", stats=" + stats +
+                '}';
     }
 
     public int getId() {
@@ -61,11 +50,11 @@ public class Armor {
     }
 
     public String getName() {
-        return armorName;
+        return name;
     }
 
-    public void setName(String name) {
-        this.armorName = name;
+    public void setName(String armorName) {
+        this.name = armorName;
     }
 
     public String getRare() {
@@ -77,83 +66,25 @@ public class Armor {
     }
 
     public String getType() {
-        return armorType;
+        return type;
     }
 
-    public void setType(String type) {
-        this.armorType = type;
+    public void setType(String armorType) {
+        this.type = armorType;
     }
 
-    public int getDurability() {
-        return durability;
+    public Stats getStats() {
+        return stats;
     }
 
-    public void setDurability(int durability) {
-        this.durability = durability;
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 
-    public int getStrange() {
-        return strange;
-    }
-
-    public void setStrange(int strange) {
-        this.strange = strange;
-    }
-
-    public int getIntelligent() {
-        return intelligent;
-    }
-
-    public void setIntelligent(int intelligent) {
-        this.intelligent = intelligent;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public int getCharisma() {
-        return charisma;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
-    }
-
-    public int getLuck() {
-        return luck;
-    }
-
-    public void setLuck(int luck) {
-        this.luck = luck;
-    }
-
-    public int getStamina() {
-        return stamina;
-    }
-
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
-
-    @Override
-    public String toString() {
-        return "Armor{" +
-                "id=" + id +
-                ", armorName='" + armorName + '\'' +
-                ", rare='" + rare + '\'' +
-                ", armorType='" + armorType + '\'' +
-                ", durability=" + durability +
-                ", strange=" + strange +
-                ", intelligent=" + intelligent +
-                ", agility=" + agility +
-                ", charisma=" + charisma +
-                ", luck=" + luck +
-                ", stamina=" + stamina +
-                '}';
+    public Armor(String name, String rare, String type, Stats stats) {
+        this.name = name;
+        this.rare = rare;
+        this.type = type;
+        this.stats = stats;
     }
 }

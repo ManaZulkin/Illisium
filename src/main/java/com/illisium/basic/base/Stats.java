@@ -1,6 +1,8 @@
 package com.illisium.basic.base;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats implements Serializable {
     int strange, intelligent, agility, charisma, luck, stamina, durability ;
 
     public Stats() {
@@ -23,6 +25,19 @@ public class Stats {
         this.luck = luck;
         this.stamina = stamina;
         this.durability = durability;
+    }
+
+    @Override
+    public String toString() {
+        return "Stats{" +
+                "strange=" + strange +
+                ", intelligent=" + intelligent +
+                ", agility=" + agility +
+                ", charisma=" + charisma +
+                ", luck=" + luck +
+                ", stamina=" + stamina +
+                ", durability=" + durability +
+                '}';
     }
 
     public int getDurability() {

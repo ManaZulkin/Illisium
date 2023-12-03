@@ -1,12 +1,18 @@
 package com.illisium.modelsDB.abylities;
 
+import com.illisium.basic.Markers.Ability;
 import com.illisium.modelsDB.DBHelper.IdSkill;
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @IdClass(IdSkill.class)
 @Table(name = "Skills")
-public class Skills {
+public class Skills implements Serializable, Ability {
+    @Serial
+    private static final  long serialVersionUID = 4L;
 
 
     @Column(name = "id")
@@ -15,7 +21,7 @@ public class Skills {
 
     @Id
     @Column(name = "skill_Name")
-    private String skillName;
+    private String name;
 
     @Column(name = "weapon")
     private String weapon;
@@ -50,12 +56,12 @@ public class Skills {
         this.id = id;
     }
 
-    public String getSkillName() {
-        return skillName;
+    public String getName() {
+        return name;
     }
 
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
+    public void setName(String skillName) {
+        this.name = skillName;
     }
 
     public String getWeapon() {
@@ -126,7 +132,7 @@ public class Skills {
     public String toString() {
         return "Skills{" +
                 "id=" + id +
-                ", skillName='" + skillName + '\'' +
+                ", skillName='" + name + '\'' +
                 ", weapon='" + weapon + '\'' +
                 ", clas='" + clas + '\'' +
                 ", description='" + description + '\'' +
@@ -138,8 +144,8 @@ public class Skills {
                 '}';
     }
 
-    public Skills(String skillName, String weapon, String clas, String description, double damage, String effect, int cooldown, int lvl, String style) {
-        this.skillName = skillName;
+    public Skills(String name, String weapon, String clas, String description, double damage, String effect, int cooldown, int lvl, String style) {
+        this.name = name;
         this.weapon = weapon;
         this.clas = clas;
         this.description = description;

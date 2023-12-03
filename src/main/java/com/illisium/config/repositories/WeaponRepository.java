@@ -9,7 +9,6 @@ import java.util.Optional;
 @Repository
 public interface WeaponRepository extends JpaRepository<Weapon, Integer> {
 
-    Optional<Weapon> findByWeaponNameAndWeaponType(String weaponName, String weaponType);
-    @Override
-    Optional<Weapon> findById(Integer integer);
+    Optional<Weapon> findByNameAndType(String weaponName, String weaponType);
+
 }

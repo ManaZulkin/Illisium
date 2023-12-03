@@ -1,23 +1,32 @@
 package com.illisium.modelsDB.equpment;
 
+import com.illisium.basic.Markers.Drop;
+import com.illisium.basic.Markers.IArmor;
+import com.illisium.basic.Markers.IWeapon;
 import com.illisium.modelsDB.DBHelper.IdItem;
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Item")
 @IdClass(IdItem.class)
-public class Item {
+
+public class Item implements Serializable, Drop, IWeapon, IArmor {
+    @Serial
+    private static final  long serialVersionUID = 3L;
 
     @Column(name = "id")
     private int id;
 
     @Id
     @Column(name = "item_Name")
-    private String itemName;
+    private String name;
 
     @Id
     @Column(name = "item_Type")
-    private String itemType;
+    private String type;
 
     @Column(name = "usable")
     private boolean usable;
@@ -32,8 +41,8 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", itemName='" + itemName + '\'' +
-                ", itemType='" + itemType + '\'' +
+                ", itemName='" + name + '\'' +
+                ", itemType='" + type + '\'' +
                 ", usable=" + usable +
                 ", stackable=" + stackable +
                 ", description='" + description + '\'' +
@@ -48,20 +57,20 @@ public class Item {
         this.id = id;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String itemName) {
+        this.name = itemName;
     }
 
-    public String getItemType() {
-        return itemType;
+    public String getType() {
+        return type;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public void setType(String itemType) {
+        this.type = itemType;
     }
 
     public boolean isUsable() {
@@ -88,9 +97,9 @@ public class Item {
         this.description = description;
     }
 
-    public Item(String itemName, String itemType, boolean usable, boolean stackable, String description) {
-        this.itemName = itemName;
-        this.itemType = itemType;
+    public Item(String name, String type, boolean usable, boolean stackable, String description) {
+        this.name = name;
+        this.type = type;
         this.usable = usable;
         this.stackable = stackable;
         this.description = description;

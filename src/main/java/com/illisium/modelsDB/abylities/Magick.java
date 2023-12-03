@@ -1,13 +1,20 @@
 package com.illisium.modelsDB.abylities;
 
+import com.illisium.basic.Markers.Ability;
 import com.illisium.modelsDB.DBHelper.IdMagick;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "magick")
 @IdClass(IdMagick.class)
-public class Magick {
+public class Magick implements Serializable, Ability {
+
+    @Serial
+    private static final  long serialVersionUID = 5L;
 
     @Column(name = "id")
     @NotNull
@@ -16,7 +23,7 @@ public class Magick {
 
     @Id
     @Column(name = "spell_Name")
-    private String spellName;
+    private String name;
 
     @Id
     @Column(name = "element")
@@ -47,14 +54,14 @@ public class Magick {
     public Magick() {
     }
 
-    public Magick(String spellName, String element, int lvl) {
-        this.spellName = spellName;
+    public Magick(String name, String element, int lvl) {
+        this.name = name;
         this.element = element;
         this.lvl = lvl;
     }
 
-    public Magick(String spellName, String element, String type, String description, String effect, int cd, int lvl, String range, int damage) {
-        this.spellName = spellName;
+    public Magick(String name, String element, String type, String description, String effect, int cd, int lvl, String range, int damage) {
+        this.name = name;
         this.element = element;
         this.type = type;
         this.description = description;
@@ -69,7 +76,7 @@ public class Magick {
     public String toString() {
         return "Magick{" +
                 "id=" + id +
-                ", name='" + spellName + '\'' +
+                ", name='" + name + '\'' +
                 ", element='" + element + '\'' +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
@@ -89,12 +96,12 @@ public class Magick {
         this.id = id;
     }
 
-    public String getSpellName() {
-        return spellName;
+    public String getName() {
+        return name;
     }
 
-    public void setSpellName(String name) {
-        this.spellName = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getElement() {

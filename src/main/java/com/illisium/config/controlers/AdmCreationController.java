@@ -80,6 +80,7 @@ public class AdmCreationController {
 
     @GetMapping("/createItem")
     public String createItem(@ModelAttribute(name = "item")Item item){
+
         return "/gm/create/createItem";
     }
 

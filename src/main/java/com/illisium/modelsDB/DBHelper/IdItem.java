@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class IdItem implements Serializable {
 
-    private String itemName;
-    private String itemType;
+    private String name;
+    private String type;
 
     @Override
     public String toString() {
         return "IdItem{" +
-                "itemName='" + itemName + '\'' +
-                ", itemType='" + itemType + '\'' +
+                "itemName='" + name + '\'' +
+                ", itemType='" + type + '\'' +
                 '}';
     }
 
@@ -21,33 +21,33 @@ public class IdItem implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IdItem idItem = (IdItem) o;
-        return Objects.equals(itemName, idItem.itemName) && Objects.equals(itemType, idItem.itemType);
+        return Objects.equals(name, idItem.name) && Objects.equals(type, idItem.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemName, itemType);
+        return Objects.hash(name, type);
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getItemType() {
-        return itemType;
+    public String getType() {
+        return type;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public IdItem(String itemName, String itemType) {
-        this.itemName = itemName;
-        this.itemType = itemType;
+    public IdItem(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
     public IdItem() {

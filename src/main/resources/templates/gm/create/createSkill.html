@@ -22,7 +22,7 @@
     </thead>
     <tbody>
     <tr>
-      <td><input th:field="${skill.skillName}" type="text" id="name"/></td>
+      <td><input th:field="${skill.name}" type="text" id="name"/></td>
       <td>
         <select th:field="${skill.clas}" id="class">
           <option th:each="i : ${T(com.illisium.basic.en.ClassType).values()}" th:value="${i}" th:text="${i}"/>

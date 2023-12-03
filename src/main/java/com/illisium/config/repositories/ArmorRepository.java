@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ArmorRepository extends JpaRepository<Armor, Integer> {
-    Optional<Armor> findByArmorNameAndArmorType(String armorName, String armorType);
+    Optional<Armor> findByNameAndType(String armorName, String armorType);
 
 }
