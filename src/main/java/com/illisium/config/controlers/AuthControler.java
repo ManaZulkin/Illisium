@@ -5,6 +5,7 @@ import com.illisium.config.util.PersonValidator;
 import com.illisium.config.sequrity.Person;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,12 +39,20 @@ public class AuthControler {
         if (bindingResult.hasErrors())
             return "/auth/registrtion";
         registrationService.register(person);
-
-        return "redirect:/auth/startPage";
+        if (person.getRole().equalsIgnoreCase("ROLE_ADMIN") )  return "redirect:/auth/StartPageAdmin";
+        else if (person.getRole().equalsIgnoreCase("ROLE_USER") )  return "redirect:/auth/StartPagePlayer";
+        else return "redirect:/auth/login";
     }
 
-    @GetMapping("/StartPage")
-    public String startPage(){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(value = "/StartPageAdmin")
+    public String startPageAdmin(){
         return "auth/StartPage";
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/StartPagePlayer")
+    public String startPagePlayer(){
+        return "/player/playerStartPage";
     }
 }

@@ -15,9 +15,9 @@
         <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
         <br/>
         <label for="roles">Role: </label>
-        <select name="roles" id="roles">
-            <option value="Game Master">Game master</option>
-            <option value="Player">Player</option>
+        <select name="roles" id="roles" th:field="*{role}">
+            <option value="ROLE_ADMIN">Game master</option>
+            <option value="ROLE_USER">Player</option>
         </select>
         <input type="submit" value="Sign up!"/>
     </form>

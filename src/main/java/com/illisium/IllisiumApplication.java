@@ -3,6 +3,7 @@ package com.illisium;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,18 +21,41 @@ public class IllisiumApplication {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//
+//        http.authorizeHttpRequests(requests ->requests
+//                .requestMatchers("/gm/**").hasRole("ADMIN")
+//                .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
+//                .requestMatchers("/auth/**", "/messege/**").permitAll()
+//                .anyRequest().hasAnyRole("USER", "ADMIN")
+//        )
+//                .formLogin(form -> form.loginPage("/auth/login")
+//                        .loginProcessingUrl("/process_login")
+//                        .defaultSuccessUrl("/auth/StartPage")
+//                        .failureUrl("/auth/login?error")
+//                )
+//                .logout(logout ->logout
+//                        .logoutUrl("/logout")
+//                        .logoutSuccessUrl("/auth/login")
+//                );
+//
+//        return http.build();
+//    }
 
-        http.authorizeHttpRequests(requests ->requests
+    @Bean
+    @Order(1)
+    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception{
+
+        http.authorizeHttpRequests(request -> request
                 .requestMatchers("/gm/**").hasRole("ADMIN")
-                .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/auth/**", "/messege/**").permitAll()
-                .anyRequest().hasAnyRole("USER", "ADMIN")
-        )
+                                .anyRequest().hasAnyRole("USER", "ADMIN")
+                )
                 .formLogin(form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/process_login")
-                        .defaultSuccessUrl("/auth/StartPage")
+                        .defaultSuccessUrl("/auth/StartPageAdmin")
                         .failureUrl("/auth/login?error")
                 )
                 .logout(logout ->logout
@@ -42,4 +66,27 @@ public class IllisiumApplication {
         return http.build();
     }
 
+
+    @Bean
+    @Order(2)
+    public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception{
+
+        http.authorizeHttpRequests(request -> request
+                        .requestMatchers("/player/**").hasRole("USER")
+                        .requestMatchers("/gm/**").hasRole("ADMIN")
+                        .requestMatchers("/auth/**", "/messege/**").permitAll()
+                        .anyRequest().hasAnyRole("USER", "ADMIN")
+                )
+                .formLogin(form -> form.loginPage("/auth/login")
+                        .loginProcessingUrl("/process_login")
+                        .defaultSuccessUrl("/auth/StartPagePlayer")
+                        .failureUrl("/auth/login?error")
+                )
+                .logout(logout ->logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/auth/login")
+                );
+
+        return http.build();
+    }
 }
