@@ -39,20 +39,7 @@ public class AuthControler {
         if (bindingResult.hasErrors())
             return "/auth/registrtion";
         registrationService.register(person);
-        if (person.getRole().equalsIgnoreCase("ROLE_ADMIN") )  return "redirect:/auth/StartPageAdmin";
-        else if (person.getRole().equalsIgnoreCase("ROLE_USER") )  return "redirect:/auth/StartPagePlayer";
-        else return "redirect:/auth/login";
+        return "redirect:/auth/login";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/StartPageAdmin")
-    public String startPageAdmin(){
-        return "auth/StartPage";
-    }
-
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/StartPagePlayer")
-    public String startPagePlayer(){
-        return "/player/playerStartPage";
-    }
 }
