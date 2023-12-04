@@ -5,7 +5,6 @@ import com.illisium.config.util.PersonValidator;
 import com.illisium.config.sequrity.Person;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/auth")
-public class AuthControler {
+public class AuthController {
     private final RegistrationService registrationService;
     private final PersonValidator personValidator;
 
     @Autowired
-    public AuthControler(RegistrationService registrationService, PersonValidator personValidator) {
+    public AuthController(RegistrationService registrationService, PersonValidator personValidator) {
         this.registrationService = registrationService;
         this.personValidator = personValidator;
     }
@@ -34,10 +33,10 @@ public class AuthControler {
         return "auth/registration";
     }
     @PostMapping("/registration")
-    public String perfomRegistration(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
+    public String performRegistration(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
-            return "/auth/registrtion";
+            return "/auth/registration";
         registrationService.register(person);
         return "redirect:/auth/login";
     }
