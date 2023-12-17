@@ -7,4 +7,13 @@ import com.illisium.basic.Markers.IWeapon;
 import java.io.Serializable;
 
 public class Artifact implements Serializable, Drop, IArmor, IWeapon {
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }
