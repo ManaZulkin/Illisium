@@ -2,8 +2,7 @@ package com.illisium.basic.base;
 
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.en.ArmorType;
-import com.illisium.basic.en.Rare;
-import com.illisium.modelsDB.equpment.Armor;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -11,21 +10,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class ArmorSet implements Serializable {
-    Map<String, IArmor> armorSet;
+    private final Map<String, IArmor> armorSet;
 
-    public static void main(String[] args) {
-        ArmorSet set = new ArmorSet();
-        Armor chest = new Armor("Grr", Rare.COMMON.name(), ArmorType.CHEST.name(), new Stats());
-        Armor leggins = new Armor("Oumay", Rare.COMMON.name(), ArmorType.LEGGINGS.name(), new Stats());
-        set.equip(chest);
-        set.equip(leggins);
-        System.out.println(set);
-        set.unequipped("Oumay");
-        System.out.println();
-        System.out.println(set);
 
-    }
-    public void equip(IArmor armor) throws RuntimeException
+    public void equip(@org.jetbrains.annotations.NotNull @NotNull IArmor armor) throws RuntimeException
     {
         if (armorSet.containsKey(armor.getType())){
             armorSet.replace(armor.getType(), armor );
@@ -37,7 +25,7 @@ public class ArmorSet implements Serializable {
     public void unequipped(String st) throws RuntimeException{
         if(armorSet.containsKey(st)){
             armorSet.replace(st, null);
-        }else if (nameCheck(st)){
+        }else if (nameCheckInSet(st)){
             Set<Map.Entry<String, IArmor>> set = armorSet.entrySet();
             for (Map.Entry<String, IArmor> stringIArmorEntry : set) {
                 if (stringIArmorEntry.getValue().getName().equalsIgnoreCase(st)){
@@ -69,7 +57,7 @@ public class ArmorSet implements Serializable {
                 '}';
     }
 
-    public boolean nameCheck(String name){
+    public boolean nameCheckInSet(String name){
         Set<Map.Entry<String, IArmor>> set = armorSet.entrySet();
         for (Map.Entry<String, IArmor> stringIArmorEntry : set) {
             if (stringIArmorEntry.getValue().getName().equalsIgnoreCase(name)){

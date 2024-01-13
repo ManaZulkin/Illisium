@@ -2,8 +2,10 @@ package com.illisium.basic.en;
 
 public enum SpellsType {
 
-    Attack,
-    Defence,
+    Active,
+    Passive,
     Buff,
-    Debuff
+    Debuff,
+    Not_Fight,
+    Special
 }

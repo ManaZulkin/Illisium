@@ -1,5 +1,7 @@
 package com.illisium.resources.creature;
-
+/*
+Істота або монстр - все що може бути ворогом
+ */
 import com.illisium.basic.Markers.IMonster;
 
 import java.io.Serializable;
