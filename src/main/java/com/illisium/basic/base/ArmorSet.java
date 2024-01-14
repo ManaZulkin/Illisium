@@ -13,7 +13,13 @@ public class ArmorSet implements Serializable {
     private final Map<String, IArmor> armorSet;
 
 
-    public void equip(@org.jetbrains.annotations.NotNull @NotNull IArmor armor) throws RuntimeException
+    /**
+     * method take object IArmor end check if this item one of element of armor set
+     * if it's true - put new element of armor to armor set
+     * @param armor
+     * @throws RuntimeException
+     */
+    public void equip(@NotNull IArmor armor) throws RuntimeException
     {
         if (armorSet.containsKey(armor.getType())){
             armorSet.replace(armor.getType(), armor );
@@ -22,6 +28,12 @@ public class ArmorSet implements Serializable {
         }
     }
 
+    /**
+     * replace element of armor with name st with null element
+     * if st is not key, then check armor set for name of armor element, and if true - replace with null element
+     * @param st
+     * @throws RuntimeException
+     */
     public void unequipped(String st) throws RuntimeException{
         if(armorSet.containsKey(st)){
             armorSet.replace(st, null);
@@ -36,6 +48,9 @@ public class ArmorSet implements Serializable {
         }else throw new RuntimeException("This item not equipped!");
     }
 
+    /**
+     * creating empty armor set
+     */
     private ArmorSet() {
         this.armorSet = new HashMap<>();
         this.armorSet.put(ArmorType.CHEST.name(), null);
@@ -56,6 +71,7 @@ public class ArmorSet implements Serializable {
                 "armorSet=" + armorSet +
                 '}';
     }
+
 
     public boolean nameCheckInSet(String name){
         Set<Map.Entry<String, IArmor>> set = armorSet.entrySet();

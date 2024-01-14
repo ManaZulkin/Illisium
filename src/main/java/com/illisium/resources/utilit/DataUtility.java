@@ -2,11 +2,7 @@ package com.illisium.resources.utilit;
 
 
 import com.illisium.basic.en.ItemType;
-import com.illisium.modelsDB.abylities.Skills;
 import com.illisium.modelsDB.equpment.Item;
-import com.illisium.modelsDB.equpment.Weapon;
-import com.illisium.resources.creature.*;
-import jakarta.persistence.Entity;
 
 import java.beans.PropertyDescriptor;
 import java.io.*;
@@ -16,8 +12,11 @@ public class DataUtility {
     private final static String path = "src/main/java/com/illisium/data/";
 
 
-
-
+    /**
+     * Creating file <T> object and saving it in system using class name and name parameter of object like a path to file
+     * @param object
+     * @param <T>
+     */
     public static <T> void save( T object){
         File fcreature = new File(path  + object.getClass().getSimpleName() + "/" + check(object) + ".file");
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fcreature))){
@@ -27,6 +26,13 @@ public class DataUtility {
         }
     }
 
+    /**
+     * Loading file and return object of this file by name
+     * @param object
+     * @param name
+     * @return
+     * @param <T>
+     */
     public static <T> T  load(T object, String name){
         File fCreature = new File(path  + object.getClass().getSimpleName() + "/" + name + ".file");
 
@@ -40,8 +46,16 @@ public class DataUtility {
     }
 
 
-    /**
+    /*
      *розібратися як витягнути знаення параметра через рефлексію і аставити його в назву
+     */
+
+    /**
+     * checking object for name parameter and returning value for this parameter if it exists
+     * @param object
+     * @return
+     * @param <T>
+     * @throws RuntimeException
      */
     public static <T> String check(T object) throws RuntimeException{
       String result = null;

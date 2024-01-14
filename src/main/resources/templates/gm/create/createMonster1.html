@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Here you can create monsters</h2>
-    <form th:action="@{/gm/create/createMonster1}" th:method="post" enctype="multipart/form-data">
+    <form th:action="@{/gm/create/createMonster1}" th:method="post" enctype="multipart/form-data" th:object="${}">
         <input type="file" name="file" accept="image/jpeg">
         <br><br>
         <input type="submit" value="Next">
