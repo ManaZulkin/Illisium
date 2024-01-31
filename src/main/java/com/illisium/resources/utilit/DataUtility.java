@@ -46,9 +46,6 @@ public class DataUtility {
     }
 
 
-    /*
-     *розібратися як витягнути знаення параметра через рефлексію і аставити його в назву
-     */
 
     /**
      * checking object for name parameter and returning value for this parameter if it exists

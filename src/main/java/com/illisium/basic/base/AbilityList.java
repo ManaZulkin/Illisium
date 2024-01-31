@@ -9,6 +9,10 @@ import com.illisium.modelsDB.abylities.Special;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ *  This class contain list of all ability for this character/monster
+ */
+
 public class AbilityList  implements Serializable {
     private List<Ability> magickAbility;
     private List<Ability> physicalAbility;

@@ -1,9 +1,6 @@
 package com.illisium.modelsDB.creature;
 
-import com.illisium.basic.base.AbilityList;
-import com.illisium.basic.base.ArmorSet;
-import com.illisium.basic.base.JewellerySet;
-import com.illisium.basic.base.Weakness;
+import com.illisium.basic.base.*;
 import com.illisium.modelsDB.DBHelper.IdMonster;
 import jakarta.persistence.*;
 
@@ -25,6 +22,8 @@ public class Monster implements Serializable {
     private String ownership;
     @Column(name = "Lvl")
     private int lvl;
+
+    private Stats stats;
     private ArmorSet armorSet;
     private JewellerySet jewellerySet;
     private AbilityList abilityList;
@@ -116,11 +115,12 @@ public class Monster implements Serializable {
     public void removeWeakness(String weakness){
         this.weakness.getWeaknessList().remove(weakness);
     }
-    public Monster(String name, String type, String ownership, int lvl, ArmorSet armorSet, JewellerySet jewellerySet, AbilityList abilityList, Weakness weakness) {
+    public Monster(String name, String type, String ownership, int lvl, Stats stats, ArmorSet armorSet, JewellerySet jewellerySet, AbilityList abilityList, Weakness weakness) {
         this.name = name;
         this.type = type;
         this.ownership = ownership;
         this.lvl = lvl;
+        this.stats = stats;
         this.armorSet = armorSet;
         this.jewellerySet = jewellerySet;
         this.abilityList = abilityList;
@@ -136,5 +136,13 @@ public class Monster implements Serializable {
 
     public void setLvl(int lvl) {
         this.lvl = lvl;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 }
