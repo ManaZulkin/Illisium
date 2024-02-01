@@ -1,4 +1,4 @@
-package com.illisium.config.controlers;
+package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
 import com.illisium.modelsDB.abylities.Magick;
