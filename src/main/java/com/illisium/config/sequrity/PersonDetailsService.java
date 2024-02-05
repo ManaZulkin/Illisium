@@ -1,9 +1,9 @@
 package com.illisium.config.sequrity;
 
 import com.illisium.config.repositories.PeopleRepository;
-import com.illisium.config.sequrity.PersonDetails;
-import com.illisium.config.sequrity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +14,6 @@ import java.util.Optional;
 @Service
 public class PersonDetailsService implements UserDetailsService {
     private final PeopleRepository peopleRepository;
-
     @Autowired
     public PersonDetailsService(PeopleRepository peopleRepository) {
         this.peopleRepository = peopleRepository;

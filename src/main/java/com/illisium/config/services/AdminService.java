@@ -9,6 +9,7 @@ import com.illisium.modelsDB.equpment.Weapon;
 import com.illisium.modelsDB.sesion.Session;
 import com.illisium.resources.utilit.DataUtility;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,8 +72,8 @@ public class AdminService {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
-    public ArrayList<Session> getAllSessionList(){
-        return (ArrayList<Session>) sessionRepository.findAll();
+    public ArrayList<Session> getAllSessionListForGameMaster(){
+        return  sessionRepository.findAllByGameMaster(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

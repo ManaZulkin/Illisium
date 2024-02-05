@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Session Select</title>
+
 </head>
 <body>
-    <h4>Select your session</h4>
+    <h2>Select your session</h2>
 
     <form th:object="${sessionList}">
 
-    <select>
-        <option th:each="i : ${sessionList}" th:text="${i.getSession_Name()}" />
+    <select id="sessionList">
+        <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" />
     </select>
 
     </form>

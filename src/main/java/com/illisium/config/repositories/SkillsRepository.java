@@ -4,9 +4,9 @@ import com.illisium.modelsDB.abylities.Skills;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 @Repository
 public interface SkillsRepository extends JpaRepository<Skills, Integer> {
-    Optional<Skills> findByNameAndClas(String skillName, String clas);
+    ArrayList<Skills> findByNameAndClas(String skillName, String clas);
 }

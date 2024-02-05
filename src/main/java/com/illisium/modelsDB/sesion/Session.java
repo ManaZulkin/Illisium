@@ -17,31 +17,33 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "session_name")
-    private String session_Name;
+    @Column(name = "session_Name")
+    private String sessionName;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "game_master")
-    private String game_master;
+    @Column(name = "game_Master")
+    private String gameMaster;
 
-    public Session() {
+
+    public Session(String sessionName, String password, String gameMaster) {
+        this.sessionName = sessionName;
+        this.password = password;
+        this.gameMaster = gameMaster;
     }
 
-    public Session(String session_Name, String password, String game_master) {
-        this.session_Name = session_Name;
-        this.password = password;
-        this.game_master = game_master;
+    public Session() {
+
     }
 
     @Override
     public String toString() {
-        return "Session{" +
+        return "newSession{" +
                 "id=" + id +
-                ", session_Name='" + session_Name + '\'' +
+                ", session_Name='" + sessionName + '\'' +
                 ", password='" + password + '\'' +
-                ", game_master='" + game_master + '\'' +
+                ", game_master='" + gameMaster + '\'' +
                 '}';
     }
 
@@ -50,20 +52,20 @@ public class Session {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Session session = (Session) o;
-        return Objects.equals(id, session.id) && Objects.equals(session_Name, session.session_Name) && Objects.equals(password, session.password) && Objects.equals(game_master, session.game_master);
+        return Objects.equals(id, session.id) && Objects.equals(sessionName, session.sessionName) && Objects.equals(password, session.password) && Objects.equals(gameMaster, session.gameMaster);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, session_Name, password, game_master);
+        return Objects.hash(id, sessionName, password, gameMaster);
     }
 
-    public String getSession_Name() {
-        return session_Name;
+    public String getSessionName() {
+        return sessionName;
     }
 
-    public void setSession_Name(String session_Name) {
-        this.session_Name = session_Name;
+    public void setSessionName(String session_Name) {
+        this.sessionName = session_Name;
     }
 
     public String getPassword() {
@@ -74,12 +76,12 @@ public class Session {
         this.password = password;
     }
 
-    public String getGame_master() {
-        return game_master;
+    public String getGameMaster() {
+        return gameMaster;
     }
 
-    public void setGame_master(String game_master) {
-        this.game_master = game_master;
+    public void setGameMaster(String game_master) {
+        this.gameMaster = game_master;
     }
 
     public void setId(Long id) {
