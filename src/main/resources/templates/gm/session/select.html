@@ -8,12 +8,12 @@
 <body>
     <h2>Select your session</h2>
 
-    <form th:object="${sessionList}">
+    <form th:object="${sessionList}" th:action="@{/gm/session/select}" method="post">
 
     <select id="sessionList">
         <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" />
     </select>
-
+    <input type="submit" value="Load">
     </form>
 </body>
 </html>

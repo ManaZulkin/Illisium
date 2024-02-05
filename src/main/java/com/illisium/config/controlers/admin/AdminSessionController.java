@@ -44,6 +44,12 @@ public class AdminSessionController {
         return "redirect:/gm/session/sessionPage";
     }
 
+    @PostMapping("/select")
+    public String loadSession(){
+
+        return "redirect:/gm/session/sessionPage";
+    }
+
     @GetMapping("/sessionPage")
     public String sessionPage(){
         return "/gm/session/sessionPage";
