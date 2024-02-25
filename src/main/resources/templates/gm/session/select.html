@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Session Select</title>
-
+   <link rel="stylesheet" type="text/css" href="/css/gm/session/select.css">
 </head>
 <body>
     <h2>Select your session</h2>
@@ -11,9 +11,11 @@
     <form th:object="${sessionList}" th:action="@{/gm/session/select}" method="post">
 
     <select id="sessionList">
-        <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" />
+        <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" id="i"/>
     </select>
     <input type="submit" value="Load">
     </form>
+
+    <script src="/js/gm/session/select.js" type="text/javascript"></script>
 </body>
 </html>

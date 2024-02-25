@@ -1,4 +1,4 @@
-package com.illisium.modelsDB.sesion;
+package com.illisium.modelsDB.session;
 
 import jakarta.persistence.*;
 
@@ -26,6 +26,7 @@ public class Session {
     @Column(name = "game_Master")
     private String gameMaster;
 
+    private boolean activeSession = false;
 
     public Session(String sessionName, String password, String gameMaster) {
         this.sessionName = sessionName;
@@ -90,5 +91,13 @@ public class Session {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActiveSession() {
+        return activeSession;
+    }
+
+    public void setActiveSession(boolean activeSession) {
+        this.activeSession = activeSession;
     }
 }

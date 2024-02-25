@@ -6,7 +6,7 @@ import com.illisium.modelsDB.abylities.Skills;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
-import com.illisium.modelsDB.sesion.Session;
+import com.illisium.modelsDB.session.Session;
 import com.illisium.resources.utilit.DataUtility;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -79,7 +79,12 @@ public class AdminService {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     public void saveSession(Session session){
-        sessionRepository.save(session);
+         if (session.getSessionName().isEmpty()){
+             throw new RuntimeException("Name can not be empty");
+         }else {
+             sessionRepository.save(session);
+         }
     }
+
 
 }

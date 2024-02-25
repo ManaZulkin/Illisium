@@ -1,7 +1,7 @@
 package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
-import com.illisium.modelsDB.sesion.Session;
+import com.illisium.modelsDB.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/gm/session")
 public class AdminSessionController {
     AdminService adminService;
-
+    private Session session = new Session();
 
 
     @Autowired
@@ -25,33 +25,39 @@ public class AdminSessionController {
 
 
     @GetMapping("/select")
-    public String SessionSellect(Model model){
+    public String SessionSelect(Model model){
         model.addAttribute("sessionList", adminService.getAllSessionListForGameMaster());
+        model.addAttribute("loadSession", session);
         return "/gm/session/select";
     }
 
     @GetMapping("/newSession")
     public String createNewSession(Model model){
-        Session session = new Session();
         model.addAttribute("newSession", session);
+        session.setGameMaster(SecurityContextHolder.getContext().getAuthentication().getName());
         return "/gm/session/newSession";
     }
 
     @PostMapping("/newSession")
-    public String startNewSession(@ModelAttribute(name = "Session") Session session){
+    public String startNewSession(@ModelAttribute("Session")Session session){
         session.setGameMaster(SecurityContextHolder.getContext().getAuthentication().getName());
-        adminService.saveSession(session);
+        session.setActiveSession(true);
+        this.session = session;
+        adminService.saveSession(this.session);
         return "redirect:/gm/session/sessionPage";
     }
 
     @PostMapping("/select")
-    public String loadSession(){
-
+    public String loadSession(Model model){
+       
         return "redirect:/gm/session/sessionPage";
     }
 
     @GetMapping("/sessionPage")
-    public String sessionPage(){
+    public String sessionPage(Model model){
+        model.addAttribute("sesion", session);
+
+
         return "/gm/session/sessionPage";
     }
 }

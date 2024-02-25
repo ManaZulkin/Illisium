@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Session</title>
 </head>
 <body>
     <h1>LET'S START YOUR ROAD TO HELL!!!</h1>
+    <br>
+    <form th:object="${sesion}">
+        <label th:text="${sesion.sessionName}">name</label>
+        <br>
+        <label th:text="${sesion.getGameMaster()}">gm</label>
+    </form>
 </body>
 </html>
