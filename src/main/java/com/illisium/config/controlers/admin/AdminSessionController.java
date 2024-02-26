@@ -15,21 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/gm/session")
 public class AdminSessionController {
     AdminService adminService;
-    private Session session = new Session();
+    private Session session;
 
 
     @Autowired
-    public AdminSessionController(AdminService adminService){
+    public AdminSessionController(AdminService adminService, Session session){
         this.adminService = adminService;
+        this.session = session;
     }
 
-
-    @GetMapping("/select")
-    public String SessionSelect(Model model){
-        model.addAttribute("sessionList", adminService.getAllSessionListForGameMaster());
-        model.addAttribute("loadSession", session);
-        return "/gm/session/select";
-    }
 
     @GetMapping("/newSession")
     public String createNewSession(Model model){
@@ -47,9 +41,18 @@ public class AdminSessionController {
         return "redirect:/gm/session/sessionPage";
     }
 
+    @GetMapping("/select")
+    public String SessionSelect(Model model){
+        model.addAttribute("sessionList", adminService.getAllSessionListForGameMaster());
+        model.addAttribute("sesion", session);
+        return "/gm/session/select";
+    }
+
     @PostMapping("/select")
-    public String loadSession(Model model){
-       
+    public String loadSession(@ModelAttribute("sessionList")Session session1){
+        this.session = adminService.getSessionBySessionName(session1.getSessionName());
+
+        System.out.println(session);
         return "redirect:/gm/session/sessionPage";
     }
 

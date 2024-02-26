@@ -10,8 +10,8 @@
 
     <form th:object="${sessionList}" th:action="@{/gm/session/select}" method="post">
 
-    <select id="sessionList">
-        <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" id="i"/>
+    <select id="sessionList" th:field="${sesion.sessionName}">
+        <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" th:value="${i.sessionName}" id="i"/>
     </select>
     <input type="submit" value="Load">
     </form>

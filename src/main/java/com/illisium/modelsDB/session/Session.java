@@ -1,6 +1,7 @@
 package com.illisium.modelsDB.session;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Session")
+@Component
 public class Session {
 
 

@@ -78,6 +78,11 @@ public class AdminService {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
+    public Session getSessionBySessionName(String name){
+        return  sessionRepository.findBySessionName(name);
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Transactional
     public void saveSession(Session session){
          if (session.getSessionName().isEmpty()){
              throw new RuntimeException("Name can not be empty");

@@ -10,4 +10,6 @@ import java.util.ArrayList;
 public interface SessionRepository extends JpaRepository<Session, Integer> {
 
     ArrayList<Session> findAllByGameMaster(String gameMaster);
+
+    Session findBySessionName(String sessionName);
 }
