@@ -35,9 +35,9 @@ public class AdminSessionController {
     @PostMapping("/newSession")
     public String startNewSession(@ModelAttribute("Session")Session session){
         session.setGameMaster(SecurityContextHolder.getContext().getAuthentication().getName());
-        session.setActiveSession(true);
         this.session = session;
         adminService.saveSession(this.session);
+        session.setActiveSession(true);
         return "redirect:/gm/session/sessionPage";
     }
 
@@ -51,7 +51,7 @@ public class AdminSessionController {
     @PostMapping("/select")
     public String loadSession(@ModelAttribute("sessionList")Session session1){
         this.session = adminService.getSessionBySessionName(session1.getSessionName());
-
+        session.setActiveSession(true);
         System.out.println(session);
         return "redirect:/gm/session/sessionPage";
     }
