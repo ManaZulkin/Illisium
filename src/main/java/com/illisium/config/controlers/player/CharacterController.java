@@ -16,7 +16,7 @@ public class CharacterController {
     private final PlayerService playerService;
 
     private Session session;
-    private Character character;
+    private final Character character = new Character();
 
     @Autowired
     public CharacterController(PlayerService playerService) {
