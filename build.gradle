@@ -23,9 +23,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'org.jetbrains:annotations:24.0.0'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation("com.mysql:mysql-connector-j:8.3.0")
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation("org.springframework:spring-jdbc:6.1.4")
+
 }
 
 tasks.named('test') {
