@@ -13,7 +13,7 @@ public class Character implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "userName")
+    @Column(name = "user_Name")
     private String userName;
 
     @Column(name = "name")

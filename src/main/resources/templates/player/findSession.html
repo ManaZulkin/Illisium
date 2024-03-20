@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>FindSession</title>
 </head>
 <body>
-    <H2>Choose your oun hell</H2>
+    <H2>Choose your oun hell </H2>
+    <h2 th:object="${character}" th:text="${character.getName()}"></h2>
     <br>
 
 </body>
