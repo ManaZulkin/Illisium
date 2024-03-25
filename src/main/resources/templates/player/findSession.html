@@ -5,9 +5,15 @@
     <title>FindSession</title>
 </head>
 <body>
+<form method="post" th:action="@{/player/findSession}">
     <H2>Choose your oun hell </H2>
     <h2 th:object="${character}" th:text="${character.getName()}"></h2>
     <br>
 
+    <select id="openSessionSelect" th:field="${sesion.sessionName}">
+        <option th:each="i:${openSessionList}" th:text="${i.getSessionName()}" th:value="${i.getSessionName()}"/>
+    </select>
+    <input type="submit" th:value="Join">
+</form>
 </body>
 </html>

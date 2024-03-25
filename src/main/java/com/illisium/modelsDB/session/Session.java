@@ -3,6 +3,7 @@ package com.illisium.modelsDB.session;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,10 +31,14 @@ public class Session {
 
     private boolean activeSession = false;
 
-    public Session(String sessionName, String password, String gameMaster) {
+    @OneToMany(mappedBy = "session")
+    private List<OpenRoom> openRoom;
+
+    public Session(String sessionName, String password, String gameMaster, List<OpenRoom> openRoom) {
         this.sessionName = sessionName;
         this.password = password;
         this.gameMaster = gameMaster;
+        this.openRoom = openRoom;
     }
 
     public Session() {
@@ -101,5 +106,13 @@ public class Session {
 
     public void setActiveSession(boolean activeSession) {
         this.activeSession = activeSession;
+    }
+
+    public List<OpenRoom> getOpenRoom() {
+        return openRoom;
+    }
+
+    public void setOpenRoom(List<OpenRoom> openRoom) {
+        this.openRoom = openRoom;
     }
 }
