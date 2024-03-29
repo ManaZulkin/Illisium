@@ -6,14 +6,17 @@ import com.illisium.modelsDB.abylities.Skills;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
+import com.illisium.modelsDB.session.OpenRoom;
 import com.illisium.modelsDB.session.Session;
 import com.illisium.resources.utilit.DataUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdminService {
@@ -25,13 +28,17 @@ public class AdminService {
     private final MagickRepository magickRepository;
     private final SessionRepository sessionRepository;
 
-    public AdminService(ItemRepository itemRepository, ArmorRepository armorRepository, WeaponRepository weaponRepository, SkillsRepository skillsRepository, MagickRepository magickRepository, SessionRepository sessionRepository) {
+    private final OpenRoomRepository openRoomRepository;
+
+    @Autowired
+    public AdminService(ItemRepository itemRepository, ArmorRepository armorRepository, WeaponRepository weaponRepository, SkillsRepository skillsRepository, MagickRepository magickRepository, SessionRepository sessionRepository, OpenRoomRepository openRoomRepository) {
         this.itemRepository = itemRepository;
         this.armorRepository = armorRepository;
         this.weaponRepository = weaponRepository;
         this.skillsRepository = skillsRepository;
         this.magickRepository = magickRepository;
         this.sessionRepository = sessionRepository;
+        this.openRoomRepository = openRoomRepository;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -81,6 +88,8 @@ public class AdminService {
     public Session getSessionBySessionName(String name){
         return  sessionRepository.findBySessionName(name);
     }
+
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     public void saveSession(Session session){
@@ -91,5 +100,10 @@ public class AdminService {
          }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Transactional
+    public List<OpenRoom> getOpenRoomSet(Session session){
 
+        return openRoomRepository.findAllBySession(session);
+    }
 }

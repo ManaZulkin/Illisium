@@ -21,10 +21,6 @@ public class OpenRoom {
     public OpenRoom() {
     }
 
-    public OpenRoom( String characterName) {
-        this.characterName = characterName;
-    }
-
     public OpenRoom(Session session, String characterName) {
         this.session = session;
         this.characterName = characterName;

@@ -1,8 +1,7 @@
 package com.illisium.resources.utilit;
 
 
-import com.illisium.basic.en.ItemType;
-import com.illisium.modelsDB.equpment.Item;
+import com.illisium.modelsDB.equpment.Weapon;
 
 import java.beans.PropertyDescriptor;
 import java.io.*;
@@ -67,8 +66,24 @@ public class DataUtility {
       else return result;
    }
 
+    public static <T> long getSerialForClass(T object){
+        long serial = 0;
+        try{
+            int length = object.getClass().getName().length();
+            String parsed = null;
+            for (int i = 0; i < length; i++) {
+                parsed = String.valueOf((int)object.getClass().getName().charAt(i));
+            }
+            serial = Long.parseLong(parsed);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return serial;
+    }
+
     public static void main(String[] args) {
-        Item item = new Item("rely", ItemType.Ingredient.toString(), true, false, "");
-        System.out.println(check(item));
+        System.out.println(DataUtility.load(new Weapon(), "sword"));
+
     }
 }

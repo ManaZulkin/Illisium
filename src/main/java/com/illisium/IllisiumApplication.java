@@ -4,13 +4,11 @@ import com.illisium.config.sequrity.MySimpleUrlAuthenticationSuccessHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @SpringBootApplication
 public class IllisiumApplication {
@@ -41,7 +39,8 @@ public class IllisiumApplication {
                 .logout(logout ->logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login")
-                );
+                )
+                ;
 
         return http.build();
     }

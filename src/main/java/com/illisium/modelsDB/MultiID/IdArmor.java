@@ -1,17 +1,19 @@
-package com.illisium.modelsDB.DBHelper;
+package com.illisium.modelsDB.MultiID;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class IdWeapon implements Serializable {
+
+public class IdArmor implements Serializable {
+
     private String name;
     private String type;
 
-    public IdWeapon() {
+    public IdArmor() {
     }
 
-    public IdWeapon(String weapon_name, String type) {
-        this.name = weapon_name;
+    public IdArmor(String name, String type) {
+        this.name = name;
         this.type = type;
     }
 
@@ -19,8 +21,8 @@ public class IdWeapon implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        IdWeapon idWeapon = (IdWeapon) o;
-        return Objects.equals(name, idWeapon.name) && Objects.equals(type, idWeapon.type);
+        IdArmor idArmor = (IdArmor) o;
+        return Objects.equals(name, idArmor.name) && Objects.equals(type, idArmor.type);
     }
 
     @Override

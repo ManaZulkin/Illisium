@@ -3,7 +3,8 @@ package com.illisium.modelsDB.equpment;
 import com.illisium.basic.Markers.Drop;
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.Markers.IWeapon;
-import com.illisium.modelsDB.DBHelper.IdItem;
+import com.illisium.modelsDB.MultiID.IdItem;
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 
 public class Item implements Serializable, Drop, IWeapon, IArmor {
     @Serial
-    private static final  long serialVersionUID = 3L;
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Item());
 
     @Column(name = "id")
     private int id;

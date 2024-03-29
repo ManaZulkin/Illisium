@@ -3,7 +3,8 @@ package com.illisium.modelsDB.equpment;
 import com.illisium.basic.Markers.Drop;
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.base.Stats;
-import com.illisium.modelsDB.DBHelper.IdArmor;
+import com.illisium.modelsDB.MultiID.IdArmor;
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @IdClass(IdArmor.class)
 public class Armor implements Serializable, IArmor, Drop {
     @Serial
-    private static final  long serialVersionUID = 2L;
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Armor());
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
@@ -88,4 +89,5 @@ public class Armor implements Serializable, IArmor, Drop {
         this.type = type;
         this.stats = stats;
     }
+
 }

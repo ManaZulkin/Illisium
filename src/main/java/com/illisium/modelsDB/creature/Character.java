@@ -1,13 +1,17 @@
 package com.illisium.modelsDB.creature;
 
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "characters")
 public class Character implements Serializable {
 
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Character());
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

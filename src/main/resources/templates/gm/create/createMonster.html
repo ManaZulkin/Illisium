@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Monster</title>
+</head>
+<body>
+    <h2>Here you can create monsters</h2>
+    <form th:object="${monster}" method="post" th:action="@{/gm/create/createMonster}">
+        <label>Name
+            <input type="text" th:field="${monster.name}">
+        </label>
+        <label>Type
+            <input type="text" th:field="${monster.type}">
+        </label>
+        <label>Lvl
+            <input type="number" th:field="${monster.lvl}">
+        </label>
+        <label>Ownership
+            <input type="text" th:field="${monster.ownership}">
+        </label>
+    </form>
+</body>
+</html>

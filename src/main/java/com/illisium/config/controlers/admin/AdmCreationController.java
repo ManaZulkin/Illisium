@@ -9,6 +9,7 @@ import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,26 +31,6 @@ public class AdmCreationController {
         return "/gm/create/creationPage";
     }
 
-    @GetMapping("/createMonster1")
-    public String createMonster(@ModelAttribute(name = "monster")Monster monster){
-        return "/gm/create/createMonster1";
-    }
-
-    @PostMapping("/createMonster1")
-    public String createMonsterToStep2(@ModelAttribute(name = "monster")Monster monster){
-        return "redirect:/gm/create/createMonster2";
-    }
-
-    @GetMapping("/createMonster2")
-    public String createMonsterSteap2(@ModelAttribute(name = "monster")Monster monster){
-        return "/gm/create/createMonster2";
-    }
-
-    @PostMapping("/createMonster2")
-    public String CreateMonsterPreview(@ModelAttribute(name = "monster")Monster monster){
-
-        return "redirect:/gm/create/previewMonster";
-    }
     @GetMapping("/createWeapon")
     public String createWeapon(@ModelAttribute(name = "weapon")Weapon weapon){
         return "/gm/create/createWeapon";
@@ -105,12 +86,13 @@ public class AdmCreationController {
         return "redirect:/gm/create/createItem";
     }
 
-    @GetMapping("/previewMonster")
-    public String monsterPreview(){
-        return "/gm/create/previewMonster";
+    @GetMapping("/createMonster")
+    public String monsterPreview(Model model)
+    {   model.addAttribute("monster", new Monster());
+        return "/gm/create/createMonster";
     }
-    @PostMapping("/previewMonster")
+    @PostMapping("/createMonster")
     public String Monster(){
-        return "redirect:/gm/createMonster1";
+        return "redirect:/gm/createMonster";
     }
 }

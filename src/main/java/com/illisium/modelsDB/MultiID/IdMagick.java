@@ -1,4 +1,4 @@
-package com.illisium.modelsDB.DBHelper;
+package com.illisium.modelsDB.MultiID;
 
 import java.io.Serializable;
 import java.util.Objects;

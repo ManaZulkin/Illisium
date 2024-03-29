@@ -1,7 +1,8 @@
 package com.illisium.modelsDB.abylities;
 
 import com.illisium.basic.Markers.Ability;
-import com.illisium.modelsDB.DBHelper.IdSkill;
+import com.illisium.modelsDB.MultiID.IdSkill;
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "Skills")
 public class Skills implements Serializable, Ability {
     @Serial
-    private static final  long serialVersionUID = 4L;
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Skills());
 
 
     @Column(name = "id")

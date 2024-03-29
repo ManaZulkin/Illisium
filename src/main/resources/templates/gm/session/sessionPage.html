@@ -8,9 +8,16 @@
     <h1>LET'S START YOUR ROAD TO HELL!!!</h1>
     <br>
     <form th:object="${sesion}">
-        <label th:text="${sesion.sessionName}">name</label>
-        <br>
-        <label th:text="${sesion.getGameMaster()}">gm</label>
+        <h3>Session Name: </h3>
+        <p th:text="${sesion.sessionName}" style="color: orange"></p>
+        <h3>Game Master: </h3>
+        <P th:text="${sesion.getGameMaster()}" style="color: green"></P>
     </form>
+    <h2>Active characters:</h2>
+    <br>
+    <label th:each="player : ${openRoomSet}">
+        <span th:text="${player.getCharacterName()}" style="color: darkred"></span>
+        <br/>
+    </label>
 </body>
 </html>

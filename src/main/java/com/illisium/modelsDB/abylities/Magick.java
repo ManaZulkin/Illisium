@@ -1,7 +1,8 @@
 package com.illisium.modelsDB.abylities;
 
 import com.illisium.basic.Markers.Ability;
-import com.illisium.modelsDB.DBHelper.IdMagick;
+import com.illisium.modelsDB.MultiID.IdMagick;
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,9 +13,8 @@ import java.io.Serializable;
 @Table(name = "magick")
 @IdClass(IdMagick.class)
 public class Magick implements Serializable, Ability {
-
     @Serial
-    private static final  long serialVersionUID = 5L;
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Magick());
 
     @Column(name = "id")
     @NotNull

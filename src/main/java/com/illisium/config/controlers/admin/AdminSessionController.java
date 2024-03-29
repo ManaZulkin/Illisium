@@ -59,6 +59,7 @@ public class AdminSessionController {
     @GetMapping("/sessionPage")
     public String sessionPage(Model model){
         model.addAttribute("sesion", session);
+        model.addAttribute("openRoomSet", adminService.getOpenRoomSet(session));
 
 
         return "/gm/session/sessionPage";

@@ -1,15 +1,20 @@
 package com.illisium.modelsDB.creature;
 
 import com.illisium.basic.base.*;
-import com.illisium.modelsDB.DBHelper.IdMonster;
+import com.illisium.modelsDB.MultiID.IdMonster;
+import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "Monsters")
 @IdClass(IdMonster.class)
 public class Monster implements Serializable {
+
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Monster());
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Id

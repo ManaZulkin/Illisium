@@ -2,7 +2,6 @@ package com.illisium.config.controlers.player;
 
 import com.illisium.config.services.PlayerService;
 import com.illisium.modelsDB.creature.Character;
-import com.illisium.modelsDB.session.OpenRoom;
 import com.illisium.modelsDB.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -65,12 +64,13 @@ public class CharacterController {
     @PostMapping("/findSession")
     public String findOpenSession(@ModelAttribute(name = "sesion")Session session1){
         session = playerService.getSessionByName(session1.getSessionName());
-        session.getOpenRoom().add(new OpenRoom(character.getName()));
+        playerService.joinToOpenRoom(session, character);
         return "redirect:/player/charsheet";
     }
 
     @GetMapping("/charsheet")
     public String charsheet(Model model){
+        playerService.sessionStatusUpdate(session);
         model.addAttribute("character", character);
         model.addAttribute("sesion", session);
         return "/player/charsheet";
