@@ -26,6 +26,7 @@ public class IllisiumApplication {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(requests ->requests
+                        .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/gm/**").hasRole("ADMIN")
                 .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/auth/**", "/messege/**").permitAll()

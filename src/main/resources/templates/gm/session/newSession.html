@@ -8,10 +8,10 @@
     <form th:object="${newSession}" th:action="@{/gm/session/newSession}" method="post">
 
         <label for="sessionName">Session name</label>
-        <input th:field="${newSession.sessionName}" type="text" id="sessionName">
+        <input th:placeholder="Name" th:field="${newSession.sessionName}" type="text" id="sessionName">
         <br/>
         <label for="password">Password</label>
-        <input th:field="${newSession.password}" type="password" id="password">
+        <input th:placeholder="Password" th:field="${newSession.password}" type="password" id="password">
         <br>
         <input type="submit" value="Create">
     </form>

@@ -8,7 +8,7 @@
     <h2>This life will be full of suffer...</h2>
     <form th:method="post" th:action="@{/player/newCharacter}" th:object="${character}">
         <label for="name">Name</label>
-        <input id="name" th:field="*{name}" type="text">
+        <input th:placeholder="Name" id="name" th:field="*{name}" type="text">
         <br>
         <input type="submit" th:value="Create"/>
     </form>
