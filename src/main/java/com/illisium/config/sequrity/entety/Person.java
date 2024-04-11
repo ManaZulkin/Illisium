@@ -1,4 +1,4 @@
-package com.illisium.config.sequrity;
+package com.illisium.config.sequrity.entety;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,5 +1,6 @@
 package com.illisium.config.controlers.admin;
 
+import com.illisium.config.sequrity.LoggedUser;
 import com.illisium.config.services.AdminService;
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
@@ -19,15 +20,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/gm/create")
 public class AdmCreationController {
     private final AdminService adminService;
-
+    private final LoggedUser loggedUser;
 
     @Autowired
-    public AdmCreationController(AdminService adminService) {
+    public AdmCreationController(AdminService adminService, LoggedUser loggedUser) {
         this.adminService = adminService;
+        this.loggedUser = loggedUser;
     }
 
     @GetMapping("")
     public String adminCreate(){
+
+        System.out.println(loggedUser.getAllPersonDetails());
+        System.out.println("-------------");
+        System.out.println(loggedUser.getAllPrincipals());
+
         return "/gm/create/creationPage";
     }
 

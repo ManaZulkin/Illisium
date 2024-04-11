@@ -1,9 +1,9 @@
-package com.illisium.config.sequrity;
+package com.illisium.config.sequrity.service;
 
-import com.illisium.config.repositories.PeopleRepository;
+import com.illisium.config.sequrity.entety.PersonDetails;
+import com.illisium.config.sequrity.reposetory.PeopleRepository;
+import com.illisium.config.sequrity.entety.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

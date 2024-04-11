@@ -1,6 +1,6 @@
-package com.illisium.config.repositories;
+package com.illisium.config.sequrity.reposetory;
 
-import com.illisium.config.sequrity.Person;
+import com.illisium.config.sequrity.entety.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

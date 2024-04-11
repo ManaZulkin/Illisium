@@ -5,12 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @SpringBootApplication
+
 public class IllisiumApplication {
 
     public static void main(String[] args) {
@@ -41,10 +43,16 @@ public class IllisiumApplication {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login")
                 )
-                ;
+                .sessionManagement(sessionManagement -> sessionManagement
+                                .sessionFixation().none()
+                                .sessionCreationPolicy(SessionCreationPolicy.NEVER)
 
+
+                );
         return http.build();
     }
+
+
 
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler (){
         return new MySimpleUrlAuthenticationSuccessHandler();

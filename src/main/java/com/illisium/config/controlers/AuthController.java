@@ -1,8 +1,8 @@
 package com.illisium.config.controlers;
 
-import com.illisium.config.sequrity.RegistrationService;
+import com.illisium.config.sequrity.service.RegistrationService;
 import com.illisium.config.util.PersonValidator;
-import com.illisium.config.sequrity.Person;
+import com.illisium.config.sequrity.entety.Person;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
