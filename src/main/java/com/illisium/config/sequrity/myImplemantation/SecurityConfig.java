@@ -1,4 +1,4 @@
-package com.illisium.config.sequrity;
+package com.illisium.config.sequrity.myImplemantation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

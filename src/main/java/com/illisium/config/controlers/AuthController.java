@@ -28,10 +28,14 @@ public class AuthController {
     public String loginPage(){
         return "auth/login";
     }
+
+
     @GetMapping("/registration")
     public String registrationPage(@ModelAttribute("person")Person person, @ModelAttribute( name = "role") String role){
         return "auth/registration";
     }
+
+
     @PostMapping("/registration")
     public String performRegistration(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
         personValidator.validate(person, bindingResult);
@@ -40,5 +44,7 @@ public class AuthController {
         registrationService.register(person);
         return "redirect:/auth/login";
     }
+
+
 
 }

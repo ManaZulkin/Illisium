@@ -1,11 +1,12 @@
 package com.illisium;
 
-import com.illisium.config.sequrity.MySimpleUrlAuthenticationSuccessHandler;
+import com.illisium.config.sequrity.myImplemantation.MySimpleUrlAuthenticationSuccessHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,7 +26,7 @@ public class IllisiumApplication {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, SessionRegistry sessionRegistry) throws Exception {
 
         http.authorizeHttpRequests(requests ->requests
                         .requestMatchers("/css/**").permitAll()
@@ -40,12 +41,15 @@ public class IllisiumApplication {
                         .failureUrl("/auth/login?error")
                 )
                 .logout(logout ->logout
-                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login")
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
-                                .sessionFixation().none()
-                                .sessionCreationPolicy(SessionCreationPolicy.NEVER)
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                        .invalidSessionUrl("/auth/login")
+                        .maximumSessions(1)
+                        .expiredUrl("/auth/login")
+                        .maxSessionsPreventsLogin(true)
+                        .sessionRegistry(sessionRegistry)
 
 
                 );

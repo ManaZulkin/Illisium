@@ -15,4 +15,6 @@ public interface SessionRepository extends JpaRepository<Session, Integer> {
     Session findBySessionName(String sessionName);
 
     List<Session> findAllByActiveSessionIsTrue();
+
+    Session findByGameMasterAndActiveSession(String gameMaster, boolean activeSession);
 }

@@ -2,6 +2,7 @@ package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
 import com.illisium.modelsDB.session.Session;
+import com.illisium.resources.utilit.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/gm/session")
 public class AdminSessionController {
-    AdminService adminService;
+    private final AdminService adminService;
     private Session session;
+    private final SessionUtil sessionUtil;
 
 
     @Autowired
-    public AdminSessionController(AdminService adminService, Session session){
+    public AdminSessionController(AdminService adminService, Session session, SessionUtil sessionUtil){
         this.adminService = adminService;
         this.session = session;
+        this.sessionUtil = sessionUtil;
     }
 
 
@@ -37,7 +40,7 @@ public class AdminSessionController {
         session.setGameMaster(SecurityContextHolder.getContext().getAuthentication().getName());
         this.session = session;
         adminService.saveSession(this.session);
-        session.setActiveSession(true);
+        sessionUtil.changeSessionStatus(this.session);
         return "redirect:/gm/session/sessionPage";
     }
 
@@ -52,12 +55,13 @@ public class AdminSessionController {
     public String loadSession(@ModelAttribute("sessionList")Session session1){
         this.session = adminService.getSessionBySessionName(session1.getSessionName());
         session.setActiveSession(true);
-        System.out.println(session);
+        sessionUtil.changeSessionStatus(session);
         return "redirect:/gm/session/sessionPage";
     }
 
     @GetMapping("/sessionPage")
     public String sessionPage(Model model){
+        sessionUtil.playersCheck(session);
         model.addAttribute("sesion", session);
         model.addAttribute("openRoomSet", adminService.getOpenRoomSet(session));
 
