@@ -16,6 +16,11 @@ public class HelloControler {
     }
 
 
+    @GetMapping("/HelloPage")
+    public String HelloPage() {
+        return "/HelloPage";
+    }
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/gm/startPage")
@@ -28,5 +33,6 @@ public class HelloControler {
     public String startPagePlayer(){
         return "player/startPage";
     }
+
 
 }

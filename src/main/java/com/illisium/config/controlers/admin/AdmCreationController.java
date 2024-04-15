@@ -34,6 +34,7 @@ public class AdmCreationController {
         return "/gm/create/creationPage";
     }
 
+
     @GetMapping("/createWeapon")
     public String createWeapon(@ModelAttribute(name = "weapon")Weapon weapon){
         return "/gm/create/createWeapon";
@@ -44,6 +45,7 @@ public class AdmCreationController {
         adminService.saveWeapon(weapon);
         return "redirect:/gm/create/createWeapon";
     }
+
 
     @GetMapping("/createArmor")
     public String createArmor(@ModelAttribute(name = "armor")Armor armor){
@@ -56,6 +58,7 @@ public class AdmCreationController {
         return "redirect:/gm/create/createArmor";
     }
 
+
     @GetMapping("/createSpell")
     public String createSpell(@ModelAttribute(name = "spell")Magick magick){
         return "/gm/create/createSpell";
@@ -66,6 +69,8 @@ public class AdmCreationController {
         adminService.saveMagick(magick);
         return "redirect:/gm/create/createSpell";
     }
+
+
     @GetMapping("/createSkill")
     public String createSkill(@ModelAttribute(name = "skill")Skills skills){
         return "/gm/create/createSkill";
@@ -76,6 +81,7 @@ public class AdmCreationController {
         adminService.saveSkill(skills);
         return "redirect:/gm/create/createSpell";
     }
+
 
     @GetMapping("/createItem")
     public String createItem(@ModelAttribute(name = "item")Item item){
@@ -89,6 +95,7 @@ public class AdmCreationController {
         return "redirect:/gm/create/createItem";
     }
 
+
     @GetMapping("/createMonster")
     public String monsterPreview(Model model)
     {   model.addAttribute("monster", new Monster());
@@ -97,5 +104,32 @@ public class AdmCreationController {
     @PostMapping("/createMonster")
     public String Monster(){
         return "redirect:/gm/createMonster";
+    }
+
+
+    @GetMapping("/gm/session/createBattle")
+    public String createBattle(Model model){
+
+
+        return "/gm/session/createBattle";
+    }
+
+    @PostMapping("/gm/session/createBattle")
+    public String apruveBattle(Model model){
+
+        return "redirect:/gm/session/battle";
+    }
+
+
+    @GetMapping("/gm/session/battle")
+    public String battle(Model model){
+
+        return "/gm/session/battle";
+    }
+
+    @PostMapping("/gm/session/battle")
+    public String finishBattle(Model model){
+
+        return "redirect:/gm/session/sessionPage";
     }
 }

@@ -28,12 +28,18 @@ public class IllisiumApplication {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SessionRegistry sessionRegistry) throws Exception {
 
-        http.authorizeHttpRequests(requests ->requests
+        http.
+                authorizeHttpRequests(requests ->requests
+
+                        .requestMatchers("/auth/**", "/messege/**").permitAll()
+
                         .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/gm/**").hasRole("ADMIN")
-                .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/auth/**", "/messege/**").permitAll()
-                .anyRequest().hasAnyRole("USER", "ADMIN")
+
+                        .requestMatchers("/gm/**").hasRole("ADMIN")
+
+                        .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
+
+                        .anyRequest().permitAll()
         )
                 .formLogin(form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/process_login")
@@ -45,7 +51,7 @@ public class IllisiumApplication {
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                        .invalidSessionUrl("/auth/login")
+                        .invalidSessionUrl("/HelloPage")
                         .maximumSessions(1)
                         .expiredUrl("/auth/login")
                         .maxSessionsPreventsLogin(true)
