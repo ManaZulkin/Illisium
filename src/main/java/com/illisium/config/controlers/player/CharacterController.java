@@ -70,7 +70,12 @@ public class CharacterController {
 
     @GetMapping("/charsheet")
     public String charsheet(Model model){
-        playerService.sessionStatusUpdate(session);
+        try {
+            playerService.sessionStatusUpdate(session);
+        }
+        catch (Exception e){
+            return "redirect:/player/findSession";
+        }
         model.addAttribute("character", character);
         model.addAttribute("sesion", session);
         return "/player/charsheet";

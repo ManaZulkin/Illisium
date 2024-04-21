@@ -30,15 +30,10 @@ public class IllisiumApplication {
 
         http.
                 authorizeHttpRequests(requests ->requests
-
                         .requestMatchers("/auth/**", "/messege/**").permitAll()
-
-                        .requestMatchers("/css/**").permitAll()
-
+                        .requestMatchers("/css/**", "/").permitAll()
                         .requestMatchers("/gm/**").hasRole("ADMIN")
-
                         .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
-
                         .anyRequest().permitAll()
         )
                 .formLogin(form -> form.loginPage("/auth/login")
@@ -67,5 +62,6 @@ public class IllisiumApplication {
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler (){
         return new MySimpleUrlAuthenticationSuccessHandler();
     }
+
 
 }
