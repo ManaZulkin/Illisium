@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface OpenRoomRepository extends JpaRepository<OpenRoom, Integer> {
 
-    OpenRoom findByCharacterName(String characterName);
+    List<OpenRoom> findByCharacterName(String characterName);
 
     List<OpenRoom> findAllBySession(Session session);
 }

@@ -4,6 +4,7 @@ import com.illisium.config.repositories.CharacterRepository;
 import com.illisium.config.repositories.OpenRoomRepository;
 import com.illisium.config.repositories.SessionRepository;
 import com.illisium.modelsDB.creature.Character;
+import com.illisium.modelsDB.session.OpenRoom;
 import com.illisium.modelsDB.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,12 +60,16 @@ public class HelloControler {
             openRoomRepository.deleteAll(openRoomRepository.findAllBySession(session));
         }
         else {
+            System.out.println("--------------------No session found------------------------");
             List<Character> characters = characterRepository.findAllByUserName(
                     SecurityContextHolder.getContext().getAuthentication().getName()
             );
+            System.out.println("-------------------Characters found-----------------" + characters);
             for(Character character : characters){
-                openRoomRepository.delete(
-                        openRoomRepository.findByCharacterName(character.getName()));
+                if(openRoomRepository.findByCharacterName(character.getName()) != null) {
+                    List<OpenRoom> openRoom = openRoomRepository.findByCharacterName(character.getName());
+                    openRoomRepository.deleteAll(openRoom);
+                }
             }
         }
         System.out.println("--------------Logged out----------------");
