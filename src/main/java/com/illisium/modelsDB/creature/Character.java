@@ -1,5 +1,7 @@
 package com.illisium.modelsDB.creature;
 
+import com.illisium.basic.Markers.Creature;
+import com.illisium.basic.Markers.ICharacter;
 import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "characters")
-public class Character implements Serializable {
+public class Character implements Serializable, Creature, ICharacter {
 
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new Character());

@@ -1,5 +1,7 @@
 package com.illisium.modelsDB.creature;
 
+import com.illisium.basic.Markers.Creature;
+import com.illisium.basic.Markers.IMonster;
 import com.illisium.basic.base.*;
 import com.illisium.modelsDB.MultiID.IdMonster;
 import com.illisium.resources.utilit.DataUtility;
@@ -11,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Monsters")
 @IdClass(IdMonster.class)
-public class Monster implements Serializable {
+public class Monster implements Serializable, IMonster, Creature {
 
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new Monster());

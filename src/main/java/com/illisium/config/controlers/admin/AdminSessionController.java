@@ -1,6 +1,7 @@
 package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
+import com.illisium.modelsDB.session.Battle;
 import com.illisium.modelsDB.session.Session;
 import com.illisium.resources.utilit.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AdminSessionController {
     private final AdminService adminService;
     private Session session;
     private final SessionUtil sessionUtil;
-
+    private Battle battle;
 
     @Autowired
     public AdminSessionController(AdminService adminService, Session session, SessionUtil sessionUtil){
