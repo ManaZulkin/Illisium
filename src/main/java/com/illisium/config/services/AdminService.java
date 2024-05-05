@@ -3,6 +3,7 @@ package com.illisium.config.services;
 import com.illisium.config.repositories.*;
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
+import com.illisium.modelsDB.creature.Monster;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
@@ -27,17 +28,18 @@ public class AdminService {
     private final SkillsRepository skillsRepository;
     private final MagickRepository magickRepository;
     private final SessionRepository sessionRepository;
-
+    private final MonsterRepository monsterRepository;
     private final OpenRoomRepository openRoomRepository;
 
     @Autowired
-    public AdminService(ItemRepository itemRepository, ArmorRepository armorRepository, WeaponRepository weaponRepository, SkillsRepository skillsRepository, MagickRepository magickRepository, SessionRepository sessionRepository, OpenRoomRepository openRoomRepository) {
+    public AdminService(ItemRepository itemRepository, ArmorRepository armorRepository, WeaponRepository weaponRepository, SkillsRepository skillsRepository, MagickRepository magickRepository, SessionRepository sessionRepository, MonsterRepository monsterRepository, OpenRoomRepository openRoomRepository) {
         this.itemRepository = itemRepository;
         this.armorRepository = armorRepository;
         this.weaponRepository = weaponRepository;
         this.skillsRepository = skillsRepository;
         this.magickRepository = magickRepository;
         this.sessionRepository = sessionRepository;
+        this.monsterRepository = monsterRepository;
         this.openRoomRepository = openRoomRepository;
     }
 
@@ -105,5 +107,11 @@ public class AdminService {
     public List<OpenRoom> getOpenRoomSet(Session session){
 
         return openRoomRepository.findAllBySession(session);
+    }
+
+    @Transactional
+    public void saveMonster(Monster monster){
+        monsterRepository.save(monster);
+        DataUtility.save(monster);
     }
 }

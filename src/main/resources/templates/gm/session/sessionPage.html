@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" th:href="@{/css/gm/session/SessionPage.css}" >
 </head>
 <body>
 
@@ -39,17 +39,47 @@
 
     <h1>LET'S START YOUR ROAD TO HELL!!!</h1>
     <br>
-    <form th:object="${sesion}">
-        <h3>Session Name: </h3>
-        <p th:text="${sesion.sessionName}" style="color: orange"></p>
-        <h3>Game Master: </h3>
-        <P th:text="${sesion.getGameMaster()}" style="color: green"></P>
-    </form>
-    <h2>Active characters:</h2>
-    <br>
-    <label th:each="player : ${openRoomSet}">
-        <span th:text="${player.getCharacterName()}" style="color: darkred"></span>
-        <br/>
-    </label>
+    <div>
+        <form th:object="${sesion}">
+            <h3>Session Name: </h3>
+            <p th:text="${sesion.sessionName}" style="color: orange"></p>
+            <h3>Game Master: </h3>
+            <P th:text="${sesion.getGameMaster()}" style="color: green"></P>
+        </form>
+        <h2>Active characters:</h2>
+        <br>
+        <label th:each="player : ${openRoomSet}">
+            <span th:text="${player.getCharacterName()}" style="color: darkred"></span>
+            <br/>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="radio"  name="action" value="createBattle">Create Battle
+        </label>
+        <label>
+            <input type="radio" name="action" value="managePlayers">Manage players
+        </label>
+        <label>
+            <input type="radio" name="action" value="createQuest">Create Quest
+        </label>
+
+        <div id="createBattleDiv" class="battleForm">
+            <p>Battle creation</p>
+        </div>
+
+        <div id="managePlayersDiv" class="playersForm">
+            <p>Players management</p>
+        </div>
+
+        <div id="createQuestDiv" class="questForm">
+            <p>Quest creation</p>
+        </div>
+
+    </div>
+
+
+<script type="text/javascript" th:src="@{/js/gm/session/sessionPage.js}" ></script>
 </body>
 </html>

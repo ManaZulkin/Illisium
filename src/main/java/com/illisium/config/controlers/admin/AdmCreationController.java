@@ -102,8 +102,9 @@ public class AdmCreationController {
         return "/gm/create/createMonster";
     }
     @PostMapping("/createMonster")
-    public String Monster(){
-        return "redirect:/gm/createMonster";
+    public String saveMonster(@ModelAttribute(name = "monster")Monster monster){
+            adminService.saveMonster(monster);
+        return "redirect:/gm/create/createMonster";
     }
 
 

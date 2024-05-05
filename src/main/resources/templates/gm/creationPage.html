@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Armor</title>
+    <link rel="stylesheet" th:href="@{/css/gm/GmHead.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <ul class="header-list">
+            <li>
+                <a href="/gm/create">Create something</a>
+            </li>
+            <li>
+                <a href="/gm/session/newSession">New Session</a>
+            </li>
+            <li>
+                <a href="/gm/session/select">Load Session</a>
+            </li>
+            <li>
+                <a href="/player/startPage">Become a player</a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+                    </svg>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <label>
+            <input type="radio" name="object">
+            Armor
+        </label>
+        <label>
+            <input type="radio" name="object">
+            Weapon
+        </label>
+        <label>
+            <input type="radio" name="object">
+            Item
+        </label>
+        <label>
+            <input type="radio" name="object">
+            Skill
+        </label>
+        <label>
+            <input type="radio" name="object">
+            Spell
+        </label>
+        <label>
+            <input type="radio" name="object">
+            Monster
+        </label>
+        <label>
+            <input type="radio" name="object">
+            NPC
+        </label>
+
+
+        <div></div>
+    </main>
+
+</body>
+</html>
