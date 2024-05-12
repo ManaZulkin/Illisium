@@ -45,7 +45,6 @@ public class GetSessionController {
         model.addAttribute("sesion", adminSession.getSession());
         model.addAttribute("openRoomSet", adminService.getOpenRoomSet(adminSession.getSession()));
 
-
         return "/gm/session/sessionPage";
     }
 }
