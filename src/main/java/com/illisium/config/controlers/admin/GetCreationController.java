@@ -6,6 +6,7 @@ import com.illisium.modelsDB.creature.Monster;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
+import com.illisium.modelsDB.session.Battle;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,6 @@ public class GetCreationController {
 
     @GetMapping("")
     public String adminCreate(){
-
         return "/gm/create/creationPage";
     }
 
@@ -57,12 +57,13 @@ public class GetCreationController {
 
     @GetMapping("/gm/session/createBattle")
     public String createBattle(Model model){
+
         return "/gm/session/createBattle";
     }
 
     @GetMapping("/gm/session/battle")
     public String battle(Model model){
-
+        model.addAttribute("battle", new Battle());
         return "/gm/session/battle";
     }
 }

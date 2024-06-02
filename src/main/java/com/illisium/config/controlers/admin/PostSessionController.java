@@ -2,6 +2,7 @@ package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
 import com.illisium.config.util.AdminSession;
+import com.illisium.modelsDB.others.Quest;
 import com.illisium.modelsDB.session.Session;
 import com.illisium.resources.utilit.SessionUtil;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,5 +43,10 @@ public class PostSessionController {
         return "redirect:/gm/session/sessionPage";
     }
 
-
+    @PostMapping("/createQuest")
+    public String saveQuest(@ModelAttribute(name = "quest") Quest quest){
+        quest.setSessionName(adminSession.getSession().getSessionName());
+        adminService.saveQuest(quest);
+        return "redirect:/gm/session/sessionPage";
+    }
 }

@@ -10,4 +10,12 @@ import java.io.Serializable;
 public class NPC implements Serializable, INPC, Creature {
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new NPC());
+
+    private String name;
+
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }

@@ -3,11 +3,13 @@ package com.illisium.modelsDB.session;
 import com.illisium.basic.Markers.Creature;
 import com.illisium.resources.utilit.DataUtility;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Battle implements Serializable {
+    @Serial
     private static final long serialVersionUID = DataUtility.getSerialForClass(new Battle());
 
     private Map<Creature, Boolean> aliesList = new HashMap<>();
@@ -61,5 +63,27 @@ public class Battle implements Serializable {
         statusList.remove(creature, status);
     }
 
+    public Map<Creature, Boolean> getAliesList() {
+        return aliesList;
+    }
 
+    public void setAliesList(Map<Creature, Boolean> aliesList) {
+        this.aliesList = aliesList;
+    }
+
+    public Map<Creature, Boolean> getEnemiesList() {
+        return enemiesList;
+    }
+
+    public void setEnemiesList(Map<Creature, Boolean> enemiesList) {
+        this.enemiesList = enemiesList;
+    }
+
+    public Map<Creature, String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(Map<Creature, String> statusList) {
+        this.statusList = statusList;
+    }
 }

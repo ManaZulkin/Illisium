@@ -9,3 +9,21 @@
 .battleForm{
     display: none;
 }
+
+.session-management{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.main-body{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.session-processing p{
+    display: inline-block;
+    margin: 0 10px;
+}

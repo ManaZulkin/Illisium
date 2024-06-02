@@ -8,7 +8,6 @@ import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,15 +58,5 @@ public class PostCreationController {
         return "redirect:/gm/create/createMonster";
     }
 
-    @PostMapping("/gm/session/createBattle")
-    public String apruveBattle(Model model){
 
-        return "redirect:/gm/session/battle";
-    }
-
-    @PostMapping("/gm/session/battle")
-    public String finishBattle(Model model){
-
-        return "redirect:/gm/session/sessionPage";
-    }
 }

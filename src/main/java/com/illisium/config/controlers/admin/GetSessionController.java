@@ -2,6 +2,8 @@ package com.illisium.config.controlers.admin;
 
 import com.illisium.config.services.AdminService;
 import com.illisium.config.util.AdminSession;
+import com.illisium.modelsDB.others.Quest;
+import com.illisium.modelsDB.session.Battle;
 import com.illisium.modelsDB.session.Session;
 import com.illisium.resources.utilit.SessionUtil;
 import org.springframework.stereotype.Controller;
@@ -44,7 +46,10 @@ public class GetSessionController {
         sessionUtil.playersCheck(adminSession.getSession());
         model.addAttribute("sesion", adminSession.getSession());
         model.addAttribute("openRoomSet", adminService.getOpenRoomSet(adminSession.getSession()));
-
+        model.addAttribute("battle", new Battle());
+        model.addAttribute("quest", new Quest());
         return "/gm/session/sessionPage";
     }
+
+
 }
