@@ -3,6 +3,9 @@ package com.illisium.modelsDB.creature;
 import com.illisium.basic.Markers.Creature;
 import com.illisium.basic.Markers.IMonster;
 import com.illisium.basic.base.*;
+import com.illisium.basic.base.sub.ArmorSet;
+import com.illisium.basic.base.sub.JewellerySet;
+import com.illisium.basic.base.Stats;
 import com.illisium.modelsDB.MultiID.IdMonster;
 import com.illisium.resources.utilit.DataUtility;
 import jakarta.persistence.*;
@@ -13,10 +16,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Monsters")
 @IdClass(IdMonster.class)
-public class Monster implements Serializable, IMonster, Creature {
+public class Monsters implements Serializable, IMonster, Creature {
 
     @Serial
-    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Monster());
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Monsters());
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Id
@@ -30,16 +33,21 @@ public class Monster implements Serializable, IMonster, Creature {
     @Column(name = "Lvl")
     private int lvl;
 
+    @Transient
     private Stats stats;
+    @Transient
     private ArmorSet armorSet;
+    @Transient
     private JewellerySet jewellerySet;
+    @Transient
     private AbilityList abilityList;
+    @Transient
     public Weakness weakness ;
 
 
     @Override
     public String toString() {
-        return "Monster{" +
+        return "Monsters{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
@@ -122,7 +130,7 @@ public class Monster implements Serializable, IMonster, Creature {
     public void removeWeakness(String weakness){
         this.weakness.getWeaknessList().remove(weakness);
     }
-    public Monster(String name, String type, String ownership, int lvl, Stats stats, ArmorSet armorSet, JewellerySet jewellerySet, AbilityList abilityList, Weakness weakness) {
+    public Monsters(String name, String type, String ownership, int lvl, Stats stats, ArmorSet armorSet, JewellerySet jewellerySet, AbilityList abilityList, Weakness weakness) {
         this.name = name;
         this.type = type;
         this.ownership = ownership;
@@ -134,7 +142,7 @@ public class Monster implements Serializable, IMonster, Creature {
         this.weakness = weakness;
     }
 
-    public Monster() {
+    public Monsters() {
     }
 
     public int getLvl() {

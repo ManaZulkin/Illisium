@@ -3,7 +3,7 @@ package com.illisium.config.controlers.admin;
 import com.illisium.config.services.AdminService;
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
-import com.illisium.modelsDB.creature.Monster;
+import com.illisium.modelsDB.creature.Monsters;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
@@ -53,8 +53,8 @@ public class PostCreationController {
     }
 
     @PostMapping("/createMonster")
-    public String saveMonster(@ModelAttribute(name = "monster") Monster monster){
-        adminService.saveMonster(monster);
+    public String saveMonster(@ModelAttribute(name = "monster") Monsters monsters){
+        adminService.saveMonster(monsters);
         return "redirect:/gm/create/createMonster";
     }
 

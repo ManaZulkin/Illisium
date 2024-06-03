@@ -38,18 +38,18 @@
 
 
     <h2>Here you can create monsters</h2>
-    <form th:object="${monster}" method="post" th:action="@{/gm/create/createMonster}">
+    <form th:object="${monsters}" method="post" th:action="@{/gm/create/createMonster}">
         <label>Name
-            <input type="text" th:field="${monster.name}">
+            <input type="text" th:field="${monsters.name}">
         </label>
         <label>Type
-            <input type="text" th:field="${monster.type}">
+            <input type="text" th:field="${monsters.type}">
         </label>
         <label>Lvl
-            <input type="number" th:field="${monster.lvl}">
+            <input type="number" th:field="${monsters.lvl}">
         </label>
         <label>Ownership
-            <input type="text" th:field="${monster.ownership}">
+            <input type="text" th:field="${monsters.ownership}">
         </label>
 
         <br>

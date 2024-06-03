@@ -2,7 +2,7 @@ package com.illisium.config.controlers.admin;
 
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
-import com.illisium.modelsDB.creature.Monster;
+import com.illisium.modelsDB.creature.Monsters;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
@@ -51,7 +51,7 @@ public class GetCreationController {
 
     @GetMapping("/createMonster")
     public String monsterPreview(Model model){
-        model.addAttribute("monster", new Monster());
+        model.addAttribute("monster", new Monsters());
         return "/gm/create/createMonster";
     }
 

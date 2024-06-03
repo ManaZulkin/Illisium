@@ -5,7 +5,7 @@ import com.illisium.config.repositories.SessionRepository;
 import com.illisium.config.util.CreationRepositoryHolder;
 import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Skills;
-import com.illisium.modelsDB.creature.Monster;
+import com.illisium.modelsDB.creature.Monsters;
 import com.illisium.modelsDB.equpment.Armor;
 import com.illisium.modelsDB.equpment.Item;
 import com.illisium.modelsDB.equpment.Weapon;
@@ -99,9 +99,9 @@ public class AdminService {
 
 
     @Transactional
-    public void saveMonster(Monster monster){
-        creationRepositoryHolder.getMonsterRepository().save(monster);
-        DataUtility.save(monster);
+    public void saveMonster(Monsters monsters){
+        creationRepositoryHolder.getMonsterRepository().save(monsters);
+        DataUtility.save(monsters);
     }
 
     @Transactional
