@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface MagickRepository extends JpaRepository<Magick, Integer> {
 
     Optional<Magick> findByNameAndElementAndLvl(String spellName, String element, int lvl);
+
+    Magick findByDescriptionAndElement(String description, String element);
 }

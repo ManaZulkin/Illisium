@@ -1,4 +1,4 @@
-package com.illisium.basic.base;
+package com.illisium.basic.base.sub;
 
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.en.ArmorType;
@@ -51,7 +51,7 @@ public class ArmorSet implements Serializable {
     /**
      * creating empty armor set
      */
-    private ArmorSet() {
+    public ArmorSet() {
         this.armorSet = new HashMap<>();
         this.armorSet.put(ArmorType.CHEST.name(), null);
         this.armorSet.put(ArmorType.GLOVES.name(), null);

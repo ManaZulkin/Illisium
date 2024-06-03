@@ -9,4 +9,6 @@ import java.util.ArrayList;
 @Repository
 public interface SkillsRepository extends JpaRepository<Skills, Integer> {
     ArrayList<Skills> findByNameAndClas(String skillName, String clas);
+
+    Skills findByName(String name);
 }

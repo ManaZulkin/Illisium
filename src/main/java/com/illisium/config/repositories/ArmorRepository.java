@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface ArmorRepository extends JpaRepository<Armor, Integer> {
     Optional<Armor> findByNameAndType(String armorName, String armorType);
 
+    Armor findByName(String name);
 }

@@ -18,7 +18,11 @@ public class DataUtility {
      */
     public static <T> void save( T object){
         File fcreature = new File(path  + object.getClass().getSimpleName() + "/" + check(object) + ".file");
+        File folder = new File(path  + object.getClass().getSimpleName() + "/");
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fcreature))){
+            if(!folder.exists()){
+                folder.mkdir();
+            }
             oos.writeObject(object);
         }catch (Exception e){
             e.printStackTrace();

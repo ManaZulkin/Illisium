@@ -31,6 +31,7 @@ public class Weapon implements IWeapon, Serializable, Drop {
     @Column(name = "DMG")
     int damage;
 
+
     private Stats stats;
 
     private boolean twohand;

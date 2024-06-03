@@ -7,6 +7,7 @@ import com.illisium.modelsDB.abylities.Skills;
 import com.illisium.modelsDB.abylities.Special;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ public class AbilityList  implements Serializable {
     private List<Ability> physicalAbility;
     private List<Ability> passiveAbility;
     private List<Ability> specialAbility;
+
+
 
 
     public void learnAbility(Ability ability){
@@ -67,12 +70,9 @@ public class AbilityList  implements Serializable {
     }
 
     public AbilityList() {
-    }
-
-    public AbilityList(List<Ability> magickAbility, List<Ability> physicalAbility, List<Ability> passiveAbility, List<Ability> specialAbility) {
-        this.magickAbility = magickAbility;
-        this.physicalAbility = physicalAbility;
-        this.passiveAbility = passiveAbility;
-        this.specialAbility = specialAbility;
+        magickAbility = new ArrayList<Ability>();
+        specialAbility =  new ArrayList<>();
+        physicalAbility = new ArrayList<>();
+        passiveAbility = new ArrayList<>();
     }
 }

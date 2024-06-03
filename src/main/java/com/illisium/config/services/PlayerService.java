@@ -6,6 +6,8 @@ import com.illisium.config.repositories.SessionRepository;
 import com.illisium.modelsDB.creature.Character;
 import com.illisium.modelsDB.session.OpenRoom;
 import com.illisium.modelsDB.session.Session;
+import com.illisium.resources.utilit.DataUtility;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class PlayerService {
 
     public void saveCharacter(Character character){
         characterRepository.save(character);
+        DataUtility.save(character);
     }
 
     public List<Character> getCharacterList(){
@@ -39,14 +42,7 @@ public class PlayerService {
     }
 
     public List<Session> getOpenSession(){
-        List<Session> activeSessions = sessionRepository.findAllByActiveSessionIsTrue();
-//        for (Session s :
-//                activeSessions) {
-//            if (!globalService.loggedIn().contains(s.getGameMaster())){
-//                activeSessions.remove(s);
-//            }
-//        }
-        return activeSessions;
+        return sessionRepository.findAllByActiveSessionIsTrue();
     }
 
     public Session getSessionByName(String name){
@@ -57,12 +53,14 @@ public class PlayerService {
     }
 
 
-    public void sessionStatusUpdate(Session session) throws RuntimeException {
+    public void sessionStatusUpdate(@NotNull Session session) throws RuntimeException {
         if(!sessionRepository.findBySessionName(session.getSessionName()).isActiveSession())
             throw new RuntimeException("Session is closed or not exist");
     }
-    public void joinToOpenRoom(Session session, Character character){
+    public void joinToOpenRoom(Session session, @NotNull Character character){
        openRoomRepository.save(new OpenRoom(session, character.getName()));
     }
+
+
 
 }

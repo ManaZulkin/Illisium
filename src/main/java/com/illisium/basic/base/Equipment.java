@@ -1,6 +1,8 @@
 package com.illisium.basic.base;
 
 import com.illisium.basic.Markers.IWeapon;
+import com.illisium.basic.base.sub.ArmorSet;
+import com.illisium.basic.base.sub.JewellerySet;
 import com.illisium.modelsDB.equpment.Artifact;
 
 import java.io.Serializable;
@@ -17,6 +19,9 @@ public class Equipment implements Serializable {
 
 
     public Equipment() {
+        armorSet = new ArmorSet();
+        jewellerySet = new JewellerySet();
+        artifact = new Artifact();
     }
 
     @Override

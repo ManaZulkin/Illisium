@@ -1,5 +1,16 @@
 package com.illisium.basic.base;
 
-public class InfoChar {
-    String name, fullName, className;
+import java.io.Serializable;
+
+public class InfoChar implements Serializable {
+    String  element;
+
+    public String getElement() {
+        return element;
+    }
+
+    public void setElement(String element) {
+        this.element = element;
+    }
+
 }

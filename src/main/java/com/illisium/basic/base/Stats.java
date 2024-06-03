@@ -1,11 +1,21 @@
 package com.illisium.basic.base;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Stats implements Serializable {
     int strange, intelligent, agility, charisma, luck, stamina, durability ;
 
+    private Map<String, Integer> stats = new HashMap<String, Integer>();
+
     public Stats() {
+        stats.put("strange", strange);
+        stats.put("intelligent", intelligent);
+        stats.put("agility", agility);
+        stats.put("charisma", charisma);
+        stats.put("luck", luck);
+        stats.put("stamina", stamina);
     }
 
     public Stats(int strange, int intelligent, int agility, int charisma, int luck, int stamina) {
@@ -15,6 +25,12 @@ public class Stats implements Serializable {
         this.charisma = charisma;
         this.luck = luck;
         this.stamina = stamina;
+        stats.put("strange", strange);
+        stats.put("intelligent", intelligent);
+        stats.put("agility", agility);
+        stats.put("charisma", charisma);
+        stats.put("luck", luck);
+        stats.put("stamina", stamina);
     }
 
     public Stats(int strange, int intelligent, int agility, int charisma, int luck, int stamina, int durability) {
@@ -25,6 +41,13 @@ public class Stats implements Serializable {
         this.luck = luck;
         this.stamina = stamina;
         this.durability = durability;
+        stats.put("strange", strange);
+        stats.put("intelligent", intelligent);
+        stats.put("agility", agility);
+        stats.put("charisma", charisma);
+        stats.put("luck", luck);
+        stats.put("stamina", stamina);
+        stats.put("durability", durability);
     }
 
     @Override
@@ -95,4 +118,16 @@ public class Stats implements Serializable {
     public void setStamina(int stamina) {
         this.stamina = stamina;
     }
+
+    public Map<String, Integer> getStats() {
+        return stats;
+    }
+    public String[] getStatNames() {
+
+        return stats.keySet().toArray(new String[stats.size()]);
+    }
+    public Integer[] getStatValues() {
+        return stats.values().toArray(new Integer[stats.size()]);
+    }
+
 }
