@@ -4,7 +4,9 @@ import com.illisium.basic.Markers.IWeapon;
 import com.illisium.basic.base.sub.ArmorSet;
 import com.illisium.basic.base.sub.JewellerySet;
 import com.illisium.modelsDB.equpment.Artifact;
+import com.illisium.resources.utilit.DataUtility;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -16,6 +18,9 @@ public class Equipment implements Serializable {
     private ArmorSet armorSet;
     private JewellerySet jewellerySet;
     private Artifact artifact;
+
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Equipment());
 
 
     public Equipment() {

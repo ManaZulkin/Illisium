@@ -51,6 +51,7 @@ public class GetCharacterController {
         catch (Exception e){
             return "redirect:/player/findSession";
         }
+        System.out.println(characterUtil.getCharacter().getStats().getStats().toString());
         model.addAttribute("character", characterUtil.getCharacter());
         model.addAttribute("sesion", characterUtil.getSession());
         return "/player/charsheet";

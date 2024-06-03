@@ -9,4 +9,9 @@ import java.io.Serializable;
 public class Special implements Serializable, Ability {
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new Special());
+
+    @Override
+    public String getName() {
+        return "";
+    }
 }

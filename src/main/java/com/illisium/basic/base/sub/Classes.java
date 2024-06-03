@@ -1,10 +1,12 @@
 package com.illisium.basic.base.sub;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Classes implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String className;

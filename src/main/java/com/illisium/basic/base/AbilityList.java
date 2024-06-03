@@ -5,7 +5,9 @@ import com.illisium.modelsDB.abylities.Magick;
 import com.illisium.modelsDB.abylities.Passive;
 import com.illisium.modelsDB.abylities.Skills;
 import com.illisium.modelsDB.abylities.Special;
+import com.illisium.resources.utilit.DataUtility;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,9 @@ public class AbilityList  implements Serializable {
     private List<Ability> physicalAbility;
     private List<Ability> passiveAbility;
     private List<Ability> specialAbility;
+
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new ArrayList<>());
 
 
 

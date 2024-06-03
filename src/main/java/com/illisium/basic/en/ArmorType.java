@@ -1,14 +1,14 @@
 package com.illisium.basic.en;
 
 public enum ArmorType {
-    CHEST,
-    GLOVES,
-    BOOTS,
-    PANTS,
     HEAD,
+    CHEST,
+    SHIRT,
+    GLOVES,
+    HANDCUFFS,
     BELT,
     LEGGINGS,
-    HANDCUFFS,
-    SHIRT
+    PANTS,
+    BOOTS,
 
 }

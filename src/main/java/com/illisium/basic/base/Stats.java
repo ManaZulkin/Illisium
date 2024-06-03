@@ -7,6 +7,7 @@ import java.util.Map;
 public class Stats implements Serializable {
     int strange, intelligent, agility, charisma, luck, stamina, durability ;
 
+
     private Map<String, Integer> stats = new HashMap<String, Integer>();
 
     public Stats() {

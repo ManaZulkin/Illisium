@@ -9,4 +9,9 @@ import java.io.Serializable;
 public class Passive implements Serializable, Ability {
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new Passive());
+
+    @Override
+    public String getName() {
+        return "";
+    }
 }

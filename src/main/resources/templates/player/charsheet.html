@@ -8,5 +8,46 @@
     <h3>Session by </h3>
     <h3 th:text="${sesion.getGameMaster()}"></h3>
     <h2 th:object="${character}" th:text="${character.getName()}"></h2>
+
+    <form th:object="${character}">
+        <table style="border: solid" >
+        <tr>
+            <th>Strange</th>
+            <td><input type="number" th:value="*{stats.strange}"></td>
+        </tr>
+        <tr>
+            <th>Agility</th>
+            <td><input type="number" th:value="*{stats.agility}"></td>
+        </tr>
+        <tr>
+            <th>Intelligent</th>
+            <td><input type="number" th:value="*{stats.intelligent}"></td>
+        </tr>
+        <tr>
+            <th>Charisma</th>
+            <td><input type="number" th:value="*{stats.charisma}"></td>
+        </tr>
+        <tr>
+            <th>Luck</th>
+            <td><input type="number" th:value="*{stats.luck}"></td>
+        </tr>
+    </table>
+
+        <table style="border: solid">
+            <tr th:each="i : ${T(com.illisium.basic.en.ArmorType).values()}">
+                <th th:text="${i.name()}"/>
+                <th th:text="${character.equipment.armorSet.getEqipedName(i.toString())}">
+                </th>
+            </tr>
+        </table>
+
+        <table style="border: solid">
+            <tr th:each="i : *{abilities.getPhysicalAbility()}">
+                <th th:text="${i.name}" />
+            </tr>
+        </table>
+        <input type="submit" value="update">
+    </form>
+
 </body>
 </html>

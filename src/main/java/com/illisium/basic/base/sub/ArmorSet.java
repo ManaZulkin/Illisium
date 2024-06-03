@@ -2,8 +2,9 @@ package com.illisium.basic.base.sub;
 
 import com.illisium.basic.Markers.IArmor;
 import com.illisium.basic.en.ArmorType;
-import jakarta.validation.constraints.NotNull;
+import com.illisium.resources.utilit.DataUtility;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,15 +14,21 @@ public class ArmorSet implements Serializable {
     private final Map<String, IArmor> armorSet;
 
 
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new ArmorSet());
+
+
     /**
      * method take object IArmor end check if this item one of element of armor set
      * if it's true - put new element of armor to armor set
      * @param armor
      * @throws RuntimeException
      */
-    public void equip(@NotNull IArmor armor) throws RuntimeException
+    public void equip( IArmor armor) throws RuntimeException
     {
-        if (armorSet.containsKey(armor.getType())){
+        if(armor == null){
+
+        }else if (armorSet.containsKey(armor.getType())){
             armorSet.replace(armor.getType(), armor );
         } else {
             throw new RuntimeException("Wrong item");
@@ -81,5 +88,18 @@ public class ArmorSet implements Serializable {
             }
         }
         return false;
+    }
+
+    public String getEqipedName(String type){
+        if(armorSet.containsKey(type)) {
+            if (armorSet.get(type) == null){
+                return "empty";
+            }
+            return armorSet.get(type).getName();
+        }else return "empty";
+    }
+
+    public Map<String, IArmor> getArmorSet() {
+        return armorSet;
     }
 }

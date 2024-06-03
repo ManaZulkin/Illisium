@@ -2,6 +2,7 @@ package com.illisium.config.util;
 
 import com.illisium.modelsDB.creature.Character;
 import com.illisium.modelsDB.session.Session;
+import com.illisium.resources.utilit.DataUtility;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,11 +26,6 @@ public class CharacterUtil {
     }
 
     public void setCharacter(Character character) {
-        this.character = character;
-        try{
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        this.character = DataUtility.load(new Character(), character.getName());
     }
 }

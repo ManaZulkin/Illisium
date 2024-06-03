@@ -21,12 +21,14 @@ public class Armor implements Serializable, IArmor, Drop {
     int id;
     @Id
     @Column(name = "armor_Name")
-    private String name;
+    private String name = "empty";
     @Column(name = "rare")
-    String rare;
+    String rare = "";
     @Id
     @Column(name = "armor_Type")
-    private String type;
+    private String type = "";
+
+    @Transient
     private Stats stats;
 
     public Armor() {

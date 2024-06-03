@@ -1,10 +1,16 @@
 package com.illisium.basic.base;
 
+import com.illisium.resources.utilit.DataUtility;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public class Weakness implements Serializable {
     private List<String> weaknessList;
+    @Serial
+    private static final  long serialVersionUID = DataUtility.getSerialForClass(new Weakness());
+
 
     @Override
     public String toString() {
