@@ -1,19 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Start Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/player/header.css}">
+    <link rel="stylesheet" th:href="@{/css/player/leftNavigation.css}">
+    <link rel="stylesheet" th:href="@{/css/player/dicePanel.css}">
+    <link rel="stylesheet" th:href="@{/css/player/mainBody.css}">
+
+
+    <script type="text/javascript" th:src="@{/js/player/startPage.js}"  th:inline="javascript"></script>
 </head>
 <body>
-    <h3>HELL WILL BLESS YOU PLAYER!!!</h3>
 
-    <ul>
-        <li>
-            <a href="/player/newCharacter">New Character</a>
-        </li>
-        <li>
-            <a href="/player/characters">Select Character</a>
-        </li>
-    </ul>
+    <div class="header">
+        <ul class="header-list">
+            <li><p th:if="${character.name} != null" th:text="'I am ' + ${character.name}"></p></li>
+            <li><p th:if="${sesion.sessionName} != null" th:text="'Session name: ' + ${sesion.sessionName}"></p></li>
+            <li><p th:if="${sesion.gameMaster} != null" th:text="'Game Master: ' + ${sesion.gameMaster}"></p></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="main-body">
+
+        <div class="left-nav">
+            <ul class="left-nav-list">
+                <li><button name="action">Main</button></li>
+                <li><button name="action">Character</button></li>
+                <li><button name="action">Inventory</button></li>
+                <li><button name="action">Skills</button></li>
+                <li><button name="action">Quests</button></li>
+                <li><button name="action">Battle</button></li>
+                <li><button name="action">Notebook</button></li>
+            </ul>
+        </div>
+
+        <div class="main-body-div">
+            <div class="screen" >
+                <div class="main" id="main">
+                   <div class="select-char" style="border: solid">
+                       <h2>Select your poor soul...</h2>
+                       <form method="post" th:action="@{/player/characters}">
+                           <select id="charactersList" th:field="${character.name}">
+                               <option th:each="i:${charactersList}" th:text="${i.getName()}" th:value="${i.getName()}"/>
+                           </select>
+                           <br>
+                           <input type="submit" th:value="Select">
+                       </form>
+                   </div>
+                    <div class="create-div" id="create-div" style="border: solid">
+                        <h2>This life will be full of suffer...</h2>
+                        <form th:method="post" th:action="@{/player/newCharacter}" th:object="${character}">
+                            <label for="name">Name</label>
+                            <input th:placeholder="Name" id="name" th:field="*{name}" type="text">
+                            <br>
+
+                            <table class="stats" style="border: solid">
+                                <tr>
+                                    <th>Strange</th>
+                                    <td><input type="number" th:value="*{stats.strange}" th:field="*{stats.strange}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Agility</th>
+                                    <td><input type="number" th:value="*{stats.agility}" th:field="*{stats.agility}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Intelligent</th>
+                                    <td><input type="number" th:value="*{stats.intelligent}" th:field="*{stats.intelligent}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Charisma</th>
+                                    <td><input type="number" th:value="*{stats.charisma}" th:field="*{stats.charisma}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Luck</th>
+                                    <td><input type="number" th:value="*{stats.luck}" th:field="*{stats.luck}"></td>
+                                </tr>
+                            </table>
+
+                            <label>Class
+                                <select th:field="*{classes.className}">
+                                    <option th:each="i : ${T(com.illisium.basic.en.ClassType).values()}" th:text="${i}"
+                                            th:value="${i}"/>
+                                </select>
+                            </label>
+
+                            <label>Basic magic element
+                                <select th:field="*{infoChar.element}">
+                                    <option th:each="i : ${T(com.illisium.basic.en.ElementType).values()}" th:text="${i}"
+                                            th:value="${i}"/>
+                                </select>
+                            </label>
+
+                            <input type="submit" th:value="Create"/>
+                        </form>
+                    </div>
+                    <div class="session-select" style="border: solid">
+                        <form method="post" th:action="@{/player/findSession}">
+                            <H2>Choose your oun hell </H2>
+                            <h2 th:object="${character}" th:text="${character.getName()}"></h2>
+                            <br>
+
+                            <select id="openSessionSelect" th:field="${sesion.sessionName}">
+                                <option th:each="i:${openSessionList}" th:text="${i.getSessionName()}" th:value="${i.getSessionName()}"/>
+                            </select>
+                            <input type="submit" th:value="Join">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="character" id="character" style="display: none">
+                    <h1>Character</h1>
+                </div>
+
+                <div class="inventory" id="inventory" style="display: none">
+                    <h1>Inventory</h1>
+                </div>
+
+                <div class="skills" id="skills" style="display: none">
+                    <h1>Skills</h1>
+                </div>
+
+                <div class="quests" id="quests" style="display: none">
+                    <h1>Quest</h1>
+                </div>
+
+                <div class="battle" id="battle" style="display: none">
+                    <h1>Battle</h1>
+                </div>
+
+                <div class="notebook" id="notebook" style="display: none">
+                    <h1>Notebook</h1>
+                </div>
+            </div>
+
+            <div class="Log" id="log">
+                <p>loger</p>
+            </div>
+
+        </div>
+
+
+        <div class="roll">
+            <button >d4</button>
+            <button>d6</button>
+            <button>d8</button>
+            <button>d10</button>
+            <button>d20</button>
+        </div>
+    </div>
+
 </body>
 </html>

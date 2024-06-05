@@ -42,11 +42,11 @@ public class HelloControler {
         return "gm/startPage";
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/player/startPage")
-    public String startPagePlayer(){
-        return "player/startPage";
-    }
+//    @PreAuthorize("hasRole('ROLE_USER')")
+//    @GetMapping("/player/startPage")
+//    public String startPagePlayer(){
+//        return "player/startPage";
+//    }
 
     @GetMapping("/logout")
     public String logoutPage(){

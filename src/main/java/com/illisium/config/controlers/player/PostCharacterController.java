@@ -37,7 +37,7 @@ public class PostCharacterController {
         ));
 
         playerService.saveCharacter(newChar);
-        return "redirect:/player/characters";
+        return "redirect:/player/startPage";
     }
 
 
@@ -46,7 +46,7 @@ public class PostCharacterController {
     public String selectCharacter(@ModelAttribute(name = "character")Character character1){
         characterUtil.setCharacter(playerService.getCharacterByName(character1.getName()));
 
-        return "redirect:/player/findSession";
+        return "redirect:/player/startPage";
     }
 
 
@@ -55,7 +55,8 @@ public class PostCharacterController {
     public String findOpenSession(@ModelAttribute(name = "sesion") Session session1){
         characterUtil.setSession(playerService.getSessionByName(session1.getSessionName()));
         playerService.joinToOpenRoom(characterUtil.getSession(), characterUtil.getCharacter());
-        return "redirect:/player/charsheet";
+        return "redirect:/player/startPage";
     }
+
 
 }

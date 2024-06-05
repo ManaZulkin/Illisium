@@ -1,0 +1,15 @@
+.roll{
+    position: fixed;
+    height: 120px;
+    width: 120px;
+    background-color: darkseagreen;
+    bottom: 0;
+    right: 0;
+}
+
+.roll button{
+    height: 35px;
+    width: 35px;
+    margin: 2px;
+
+}

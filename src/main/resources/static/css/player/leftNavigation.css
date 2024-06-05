@@ -1,0 +1,32 @@
+.left-nav{
+    display: flex;
+    line-height: 50px;
+    background-color: olivedrab;
+    border: solid;
+    width: 10%;
+}
+
+.left-nav-list{
+    margin-top: 10px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+}
+
+.left-nav-list li{
+    display: flex;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    align-items: start;
+}
+
+.left-nav-list button{
+    height: 25px;
+    width: 100%;
+    font-size: 80%;
+    margin-top: 10px;
+}

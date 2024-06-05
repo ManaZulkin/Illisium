@@ -2,6 +2,7 @@ package com.illisium.config.controlers.player;
 
 import com.illisium.config.services.PlayerService;
 import com.illisium.config.util.CharacterUtil;
+import com.illisium.resources.mechaniks.Roll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ public class GetCharacterController {
 
     private final PlayerService playerService;
     private final CharacterUtil characterUtil;
+    private Integer dice;
+    private final Roll roll = new Roll();
 
     @Autowired
     public GetCharacterController(PlayerService playerService, CharacterUtil characterUtil) {
@@ -22,38 +25,14 @@ public class GetCharacterController {
         this.characterUtil = characterUtil;
     }
 
-    @GetMapping("/newCharacter")
-    public String createCharacter(Model model){
-        model.addAttribute("character", characterUtil.getCharacter());
-        return "player/newCharacter";
-    }
-
-    @GetMapping("/characters")
-    public String charactersList(Model model){
-        model.addAttribute("charactersList", playerService.getCharacterList());
-        model.addAttribute("character", characterUtil.getCharacter());
-        return "/player/charactersList";
-    }
-
-    @GetMapping("/findSession")
-    public String findSession(Model model){
+    @GetMapping("/startPage")
+    public String startPage(Model model) {
         model.addAttribute("sesion", characterUtil.getSession());
         model.addAttribute("character", characterUtil.getCharacter());
         model.addAttribute("openSessionList", playerService.getOpenSession());
-        return "/player/findSession";
-    }
-
-    @GetMapping("/charsheet")
-    public String charsheet(Model model){
-        try {
-            playerService.sessionStatusUpdate(characterUtil.getSession());
-        }
-        catch (Exception e){
-            return "redirect:/player/findSession";
-        }
-        System.out.println(characterUtil.getCharacter().getStats().getStats().toString());
-        model.addAttribute("character", characterUtil.getCharacter());
-        model.addAttribute("sesion", characterUtil.getSession());
-        return "/player/charsheet";
+        model.addAttribute("charactersList", playerService.getCharacterList());
+        model.addAttribute("rollDice", dice);
+        model.addAttribute("roll", roll);
+        return "player/startPage";
     }
 }
