@@ -18,12 +18,12 @@ public class PostBattleController {
     @PostMapping("/battle/addAllies")
     public String addAllies(@ModelAttribute(name = "battle") Battle battle){
 
-        return "redirect:/gm/session/sessionPage";
+        return "redirect:/gm/startPage";
     }
 
     @PostMapping("/battle/addEnemies")
     public String addEnemies(@ModelAttribute(name = "battle") Battle battle){
 
-        return "redirect:/gm/session/sessionPage";
+        return "redirect:/gm/startPage";
     }
 }

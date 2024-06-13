@@ -26,45 +26,45 @@ public class GetCreationController {
 
     @GetMapping("/createWeapon")
     public String createWeapon(@ModelAttribute(name = "weapon") Weapon weapon){
-        return "/gm/create/createWeapon";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/createArmor")
     public String createArmor(@ModelAttribute(name = "armor") Armor armor){
-        return "/gm/create/createArmor";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/createSpell")
     public String createSpell(@ModelAttribute(name = "spell") Magick magick){
-        return "/gm/create/createSpell";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/createSkill")
     public String createSkill(@ModelAttribute(name = "skill") Skills skills){
-        return "/gm/create/createSkill";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/createItem")
     public String createItem(@ModelAttribute(name = "item") Item item){
-        return "/gm/create/createItem";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/createMonster")
     public String monsterPreview(Model model){
         model.addAttribute("monster", new Monsters());
-        return "/gm/create/createMonster";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/gm/session/createBattle")
     public String createBattle(Model model){
 
-        return "/gm/session/createBattle";
+        return "redirect:/gm/startPage";
     }
 
     @GetMapping("/gm/session/battle")
     public String battle(Model model){
         model.addAttribute("battle", new Battle());
-        return "/gm/session/battle";
+        return "redirect:/gm/startPage";
     }
 }
 

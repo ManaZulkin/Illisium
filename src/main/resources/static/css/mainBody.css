@@ -13,8 +13,8 @@
 .Log{
     border: solid;
     width: 100%;
-    height: 20%;
-
+    height: 150px;
+    overflow-y: scroll ;
 }
 
 body{
@@ -26,4 +26,8 @@ body{
     flex-direction: column;
     height: 100%;
     width: 100%;
+}
+
+.main-body-div .screen .create{
+    flex-direction: column;
 }

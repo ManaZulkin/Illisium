@@ -27,17 +27,19 @@ public class GetSessionController {
     }
 
 
+
+
     @GetMapping("/newSession")
     public String createNewSession(Model model){
         model.addAttribute("newSession", new Session());
-        return "/gm/session/newSession";
+        return "gm/startPage";
     }
 
     @GetMapping("/select")
     public String SessionSelect(Model model){
         model.addAttribute("sessionList", adminService.getAllSessionListForGameMaster());
         model.addAttribute("sesion", new Session());
-        return "/gm/session/select";
+        return "gm/startPage";
     }
 
     @GetMapping("/sessionPage")

@@ -32,7 +32,7 @@ public class PostSessionController {
         adminSession.setSession(session);
         adminService.saveSession(adminSession.getSession());
         sessionUtil.changeSessionStatus(adminSession.getSession());
-        return "redirect:/gm/session/sessionPage";
+        return "redirect:/gm/startPage";
     }
 
     @PostMapping("/select")
@@ -40,7 +40,7 @@ public class PostSessionController {
         adminSession.setSession(adminService.getSessionBySessionName(session1.getSessionName()));
         adminSession.getSession().setActiveSession(true);
         sessionUtil.changeSessionStatus(adminSession.getSession());
-        return "redirect:/gm/session/sessionPage";
+        return "redirect:/gm/startPage";
     }
 
     @PostMapping("/createQuest")

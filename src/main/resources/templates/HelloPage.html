@@ -1,38 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Illisium</title>
+    <link rel="stylesheet" th:href="@{/css/auth/login.css}">
     <link rel="stylesheet" th:href="@{/css/HelloPage.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/login-singup.js}"></script>
 </head>
 <body>
 
-<div class="actions-head">
+<header class="actions-head">
     <ul>
         <li>
             <a href="https://docs.google.com/document/d/1bkkEZwpn1hBiLz3u-bAi2AWkWHzBAaIdkqbpWrpd4FA/edit">F.A.Q.</a>
         </li>
         <li>
-            <a href="auth/login">Log-in</a>
+            <button>Log-in</button>
         </li>
         <li>
-            <a href="/auth/registration">Sing-up</a>
+            <button>Sing-up</button>
         </li>
     </ul>
-</div>
+</header>
 
 <img th:src="@{/image/fone-image.png}" alt="fone" class="fone-img" >
-
-
-<div class="greetings">
+<div style="display: flex; flex-direction: row">
+    <div class="greetings">
     <h1>Welcome to Illisium World</h1>
 
     <p>Illisium it's Role Game which using Roll Dice mechanics. If was inspirited by DnD Role Game</p>
 
 </div>
+    <div class="login-sing-up-div">
+    <div class="log-in">
+        <form  method="post" action="/process_login">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
+            <label>Username
+                <input placeholder="Name" type="text" name="username"/>
+            </label>
+
+            <br/>
+            <label>Password
+                <input th:placeholder="Password" type="password" name="password"/>
+            </label>
+
+            <input id="submit" type="submit" value="Login"/>
+
+            <div th:if="${param.error}" style="color: red">
+                Неправильне ім’я або пароль
+            </div>
+        </form>
+    </div>
+
+    <div class="sing-up" style="display: none">
+        <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+            <label>Введіть ім'я користувача:
+                <input th:placeholder="Name" type="text" th:field="*{username}" />
+            </label>
+
+            <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
+
+            <br/>
+
+            <label>Введіть пароль:
+                <input th:placeholder="Password" type="password" th:field="*{password}"/>
+            </label>
+
+            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+
+            <br/>
+
+            <label>Role:
+                <select name="roles" id="roles" th:field="*{role}">
+                    <option value="ROLE_ADMIN">Game master</option>
+                    <option value="ROLE_USER">Player</option>
+                </select>
+            </label>
+
+            <input type="submit" value="Sign up!"/>
+        </form>
+    </div>
+</div>
+</div>
 </body>
 </html>

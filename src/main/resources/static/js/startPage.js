@@ -20,8 +20,3 @@ document.addEventListener('DOMContentLoaded', (event) =>{
     });
 });
 
-function addLogEntry(message){
-    const log = document.getElementById('log');
-    log.innerHTML += message + '<br>';
-    log.scrollTop = log.scrollHeight;
-}

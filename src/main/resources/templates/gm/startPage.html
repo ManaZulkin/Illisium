@@ -2,56 +2,406 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>GMPage</title>
-    <link rel="stylesheet" th:href="@{/css/gm/GmHead.css}">
-    <link rel="stylesheet" th:href="@{/css/gm/startPage.css}">
+    <title>Start Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/leftNavigation.css}">
+    <link rel="stylesheet" th:href="@{/css/dicePanel.css}">
+    <link rel="stylesheet" th:href="@{/css/mainBody.css}">
+
+
+    <script type="text/javascript" th:src="@{/js/rollDice.js}"></script>
+    <script type="text/javascript" th:src="@{/js/startPage.js}" th:inline="javascript"></script>
+    <script type="text/javascript" th:src="@{/js/loger.js}"></script>
 </head>
 <body>
 
-<header class="header">
+<div class="header">
     <ul class="header-list">
-        <li>
-            <a href="/gm/create">Create something</a>
-        </li>
-        <li>
-            <a href="/gm/session/newSession">New Session</a>
-        </li>
-        <li>
-            <a href="/gm/session/select">Load Session</a>
-        </li>
-        <li>
-            <a href="/player/startPage">Become a player</a>
-        </li>
-        <li>
-            <a href="/logout">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
-                </svg>
-                Logout
-            </a>
-        </li>
+        <li><a href="/player/startPage">Become a player</a></li>
+        <li><p th:if="${sesion.sessionName} != null" th:text="'Session name: ' + ${sesion.sessionName}"></p></li>
+        <li><p th:if="${sesion.gameMaster} != null" th:text="'Game Master: ' + ${sesion.gameMaster}"></p></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
-</header>
 
-<main class="main-body">
-    <nav class="left-nav">
+</div>
 
-    </nav>
 
-    <div class="center-div">
 
+<div class="main-body">
+
+    <div class="left-nav">
+        <ul class="left-nav-list">
+            <li><button name="action">Main</button></li>
+            <li><button name="action">Create</button></li>
+            <li><button name="action">Characters</button></li>
+            <li><button name="action">Battle</button></li>
+            <li><button name="action">Quests</button></li>
+            <li><button name="action">Notebook</button></li>
+        </ul>
+    </div>
+
+    <div class="main-body-div">
+        <div class="screen" >
+            <div class="main" id="main">
+                <h1>Main</h1>
+                <div class="create-session" style="border: solid">
+                    <form th:object="${newSession}" th:action="@{/gm/session/newSession}" method="post">
+
+                        <label for="sessionName">Session name</label>
+                        <input th:placeholder="Name" th:field="${newSession.sessionName}" type="text" id="sessionName">
+                        <br/>
+                        <label for="password">Password</label>
+                        <input th:placeholder="Password" th:field="${newSession.password}" type="password" id="password">
+                        <br>
+                        <input type="submit" value="Create">
+                    </form>
+                </div>
+
+                <div class="select-session" style="border: solid">
+                    <form th:object="${sessionList}" th:action="@{/gm/session/select}" method="post">
+
+                        <select id="sessionList" th:field="${sesion.sessionName}">
+                            <option th:each="i : ${sessionList}" th:text="${i.getSessionName()}" th:value="${i.sessionName}" id="i"/>
+                        </select>
+                        <input type="submit" value="Load">
+                    </form>
+                </div>
+
+            </div>
+            <div class="create" id="create" style="display: none">
+                <p>Weapon</p>
+                <div id="create-weapon" class="create-weapon" style="border: solid">
+                    <form th:method="post" th:action="@{/gm/create/createWeapon}" th:object="${weapon}">
+                        <h2>Here you can create weapon</h2>
+                        <br/>
+                        <table th:border="global" th:align="center" >
+                            <thead>
+                            <tr>
+                                <th rowspan="2">Name</th>
+                                <th rowspan="2">Type</th>
+                                <th rowspan="2">Rare</th>
+                                <th rowspan="2">Damage</th>
+                                <th rowspan="2">Twohand</th>
+                                <th colspan="6">Stats</th>
+                            </tr>
+                            <tr>
+                                <th>STR</th>
+                                <th>AGI</th>
+                                <th>INT</th>
+                                <th>STA</th>
+                                <th>LUCK</th>
+                                <th>CHAR</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" th:field="*{name}" id = "weaponName"/>
+                                </td>
+                                <td>
+
+                                    <select th:field="*{type}">
+                                        <option th:each="i : ${T(com.illisium.basic.en.WeaponType).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select th:field="*{rare}">
+                                        <option th:each="i: ${T(com.illisium.basic.en.Rare).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{damage}" id="DMG"/>
+                                </td>
+                                <td>
+                                    <input type="checkbox" th:field="*{twohand}" id="twohand">
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.strange}"  />
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.agility}"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.intelligent}" />
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.stamina}" />
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.luck}" />
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.charisma}" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <input type="submit" value="Save" />
+                    </form>
+                </div>
+                <p>Armor</p>
+                <div id="create-armor" class="create-armor" style="border: solid">
+                    <form th:method="post" th:action="@{/gm/create/createArmor}" th:object="${armor}">
+                        <h2>Here you can create armor</h2>
+                        <br/>
+                        <table th:border="global" th:align="center" >
+                            <thead>
+                            <tr>
+                                <th rowspan="2">Name</th>
+                                <th rowspan="2">Type</th>
+                                <th rowspan="2">Rare</th>
+                                <th colspan="6">Stats</th>
+                            </tr>
+                            <tr>
+                                <th>STR</th>
+                                <th>AGI</th>
+                                <th>INT</th>
+                                <th>STA</th>
+                                <th>LUCK</th>
+                                <th>CHAR</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" th:field="*{name}" id = "armorName"/>
+                                </td>
+                                <td>
+
+                                    <select th:field="*{type}">
+                                        <option th:each="i : ${T(com.illisium.basic.en.ArmorType).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select th:field="*{rare}">
+                                        <option th:each="i: ${T(com.illisium.basic.en.Rare).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.strange}"  id = "STR"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.agility}" id = "AGI"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.intelligent}" id = "INT"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.stamina}" id = "STA"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.luck}" id = "LUCK"/>
+                                </td>
+                                <td>
+                                    <input type="number" th:field="*{stats.charisma}" id="CHAR"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <input type="submit" value="Save" />
+                    </form>
+                </div>
+                <p>Item</p>
+                <div id="create-item" class="create-item" style="border: solid">
+                    <form  th:object="${item}" th:method="post" th:action="@{/gm/create/createItem}">
+                        <table th:border="global" th:align="left">
+                            <thead>
+                            <tr>
+                                <th>Name </th>
+                                <th>Type </th>
+                                <th>Usable </th>
+                                <th>Stackable </th>
+                                <th width="50%" >Description </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input th:field="${item.name}" type="text" id="name"/></td>
+                                <td><select th:field="${item.type}" id="Type">
+                                    <option th:each="i : ${T(com.illisium.basic.en.ItemType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><input th:field="${item.usable}" type="checkbox" id="usable"/></td>
+                                <td><input th:field="${item.stackable}" type="checkbox" id="stackable"/></td>
+                                <td><input th:field="${item.description}" type="text" id="description" size="150%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <input type="submit" value="Save">
+                    </form>
+
+                </div>
+                <p>Monster</p>
+                <div id="create-monster" class="create-monster" style="border: solid">
+                    <h2>Here you can create monsters</h2>
+                    <form th:object="${monsters}" method="post" th:action="@{/gm/create/createMonster}">
+                        <label>Name
+                            <input type="text" th:field="${monsters.name}">
+                        </label>
+                        <label>Type
+                            <input type="text" th:field="${monsters.type}">
+                        </label>
+                        <label>Lvl
+                            <input type="number" th:field="${monsters.lvl}">
+                        </label>
+                        <label>Ownership
+                            <input type="text" th:field="${monsters.ownership}">
+                        </label>
+
+                        <br>
+                        <input type="submit" value="Save">
+                    </form>
+                </div>
+                <p>Skill</p>
+                <div id="create-skill" class="create-skill" style="border: solid">
+                    <form  th:object="${skill}" th:method="post" th:action="@{/gm/create/createSkill}">
+                        <table th:border="global" th:align="left">
+                            <thead>
+                            <tr>
+                                <th>Name </th>
+                                <th>Class </th>
+                                <th>Weapon </th>
+                                <th>Effect </th>
+                                <th>Style</th>
+                                <th>Level </th>
+                                <th>Damage </th>
+                                <th>Cooldown </th>
+                                <th width="50%" >Description </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input th:field="${skill.name}" type="text" /></td>
+                                <td>
+                                    <select th:field="${skill.clas}" id="class">
+                                        <option th:each="i : ${T(com.illisium.basic.en.ClassType).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select></td>
+                                <td><select th:field="${skill.weapon}" id="weapon">
+                                    <option th:each="i : ${T(com.illisium.basic.en.WeaponType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><select th:field="${skill.effect}" id="Effect">
+                                    <option th:each="i : ${T(com.illisium.basic.en.EffectsType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><select th:field="${skill.style}" id="Style">
+                                    <option th:each="i : ${T(com.illisium.basic.en.ClassType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><input th:field="${skill.lvl}" type="number" id="lvl"/></td>
+                                <td><input th:field="${skill.damage}" type="number" step="0.05" id="damage"/></td>
+                                <td><input th:field="${skill.cooldown}" type="number" id="cd"/></td>
+                                <td><input th:field="${skill.description}" type="text"  size="150%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <input type="submit" value="Save">
+                    </form>
+                </div>
+                <p>Spell</p>
+                <div id="create-spell" class="create-spell" style="border: solid">
+                    <form  th:object="${spell}" th:method="post" th:action="@{/gm/create/createSpell}">
+                        <table th:border="global" th:align="left">
+                            <thead>
+                            <tr>
+                                <th>Name </th>
+                                <th>Element </th>
+                                <th>Type </th>
+                                <th>Effect </th>
+                                <th>Range </th>
+                                <th>Level </th>
+                                <th>Damage </th>
+                                <th>Cooldown </th>
+                                <th width="50%" >Description </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input th:field="${spell.name}" type="text" /></td>
+                                <td>
+                                    <select th:field="${spell.element}" id="element">
+                                        <option th:each="i : ${T(com.illisium.basic.en.ElementType).values()}" th:value="${i}" th:text="${i}"/>
+                                    </select></td>
+                                <td><select th:field="${spell.type}" >
+                                    <option th:each="i : ${T(com.illisium.basic.en.SpellsType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><select th:field="${spell.effect}" >
+                                    <option th:each="i : ${T(com.illisium.basic.en.EffectsType).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><select th:field="${spell.range}" >
+                                    <option th:each="i : ${T(com.illisium.basic.en.Range).values()}" th:value="${i}" th:text="${i}"/>
+                                </select></td>
+                                <td><input th:field="${spell.lvl}" type="number" /></td>
+                                <td><input th:field="${spell.damage}" type="number" /></td>
+                                <td><input th:field="${spell.cd}" type="number" /></td>
+                                <td><input th:field="${spell.description}" type="text"  size="150%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <input type="submit" value="Save">
+                    </form>
+
+                </div>
+            </div>
+            <div class="characters" id="characters" style="display: none">
+            <h1>characters</h1>
+        </div>
+            <div class="battle" id="battle" style="display: none">
+                <p>Battle</p>
+                <div id="createBattleDiv" class="battleForm" style="border: solid">
+                    <p>Battle creation</p> <br>
+                    <div class="allies">
+                        <p>Allies</p>
+                        <label th:each="allies: ${battle.aliesList}">
+                            <span th:text="${allies.key.getName}"></span>
+                            <br>
+                        </label>
+                    </div>
+                    <form th:method="post" th:action="@{/battle/addAllies}" th:object="${battle}">
+
+                        <input type="submit" value="Add alie">
+                    </form>
+
+                    <div class="enemies">
+                        <p>Enemies</p>
+                        <label th:each="enemies: ${battle.enemiesList}">
+                            <span th:text="${enemies.key.getName}"></span>
+                            <br>
+                        </label>
+                    </div>
+                    <form method="post" action="/battle/addEnemies" th:object="${battle}">
+
+                    </form>
+                </div>
+        </div>
+            <div class="quests" id="quests" style="display: none">
+            <h1>quests</h1>
+        </div>
+            <div class="notebook" id="notebook" style="display: none">
+                <h1>Notebook</h1>
+            </div>
+        </div>
+
+        <div class="Log" id="log">
+        </div>
 
     </div>
 
 
-    <nav class="right-nav">
-
-    </nav>
-
-</main>
+    <div class="roll">
+        <button onclick="rollD4()">d4</button>
+        <button onclick="rollD6()">d6</button>
+        <button onclick="rollD8()">d8</button>
+        <button onclick="rollD10()">d10</button>
+        <button onclick="rollD20()">d20</button>
+    </div>
+</div>
 
 </body>
 </html>

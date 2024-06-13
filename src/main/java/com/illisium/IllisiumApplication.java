@@ -40,16 +40,16 @@ public class IllisiumApplication {
                 .formLogin(form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/process_login")
                         .successHandler(myAuthenticationSuccessHandler())
-                        .failureUrl("/auth/login?error")
+                        .failureUrl("/HelloPage?error")
                 )
                 .logout(logout ->logout
-                        .logoutSuccessUrl("/auth/login")
+                        .logoutSuccessUrl("/HelloPage")
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                         .invalidSessionUrl("/HelloPage")
                         .maximumSessions(1)
-                        .expiredUrl("/auth/login")
+                        .expiredUrl("/HelloPage")
                         .maxSessionsPreventsLogin(true)
                         .sessionRegistry(sessionRegistry)
 
