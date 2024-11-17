@@ -5,6 +5,6 @@ import com.illisium.modelsDB.creature.Character;
 public class StatsTo {
 
     public static int helth(Character character){
-        return character.getStats().getStamina() * 8;
+        return character.getBasicStats().getStamina() * 8;
     }
 }

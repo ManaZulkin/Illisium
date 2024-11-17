@@ -34,7 +34,10 @@ public class Character implements Serializable, Creature, ICharacter {
     private Classes classes;
 
     @Transient
-    private  Stats stats = new Stats();
+    private  Stats basicStats = new Stats();
+
+    @Transient
+    private Stats finalStats = new Stats();
 
     @Transient
     private  AbilityList abilities  = new AbilityList();
@@ -45,9 +48,16 @@ public class Character implements Serializable, Creature, ICharacter {
     @Transient
     private  Inventar inventory = new Inventar();
 
+    public Stats getBasicStats() {
+        return basicStats;
+    }
+
+    public void setBasicStats(Stats basicStats) {
+        this.basicStats = basicStats;
+    }
 
     public void setStats(Stats stats) {
-        this.stats = stats;
+        this.basicStats = stats;
     }
 
     public void setAbilities(AbilityList abilities) {
@@ -104,7 +114,7 @@ public class Character implements Serializable, Creature, ICharacter {
     }
 
     public Stats getStats() {
-        return stats;
+        return basicStats;
     }
 
     public AbilityList getAbilities() {
@@ -117,5 +127,13 @@ public class Character implements Serializable, Creature, ICharacter {
 
     public Inventar getInventory() {
         return inventory;
+    }
+
+    public Stats getFinalStats() {
+        return finalStats;
+    }
+
+    public void setFinalStats(Stats finalStats) {
+        this.finalStats = finalStats;
     }
 }

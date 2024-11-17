@@ -13,7 +13,7 @@ import java.io.Serializable;
     this class contain only that equipment, which character/monster wear on
     does not show which weapon in use right now
  **/
-public class Equipment implements Serializable {
+public class    Equipment implements Serializable {
     private IWeapon LeftHand, RightHand, DoubleWeapon;
     private ArmorSet armorSet;
     private JewellerySet jewellerySet;

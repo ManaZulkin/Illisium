@@ -5,6 +5,7 @@ import java.util.Random;
 /**
  * Contains methods for random drop of numbers(dice emulation)
  */
+
 public class Roll {
 
     private static final Random random = new Random();
@@ -25,3 +26,4 @@ public class Roll {
         return random.nextInt(8) + 1;
     }
 }
+
