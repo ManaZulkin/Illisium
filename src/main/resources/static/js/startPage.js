@@ -1,5 +1,5 @@
 "use strict";
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
     const buttons = document.querySelectorAll('.left-nav button');
     const divs = document.querySelectorAll('.main-body-div .screen  div');
     buttons.forEach(button => {

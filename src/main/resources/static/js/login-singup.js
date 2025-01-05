@@ -1,5 +1,5 @@
 "use strict";
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
     const buttons = document.querySelectorAll('.actions-head button');
     const divs = document.querySelectorAll('.login-sing-up-div div');
     buttons.forEach(button => {
