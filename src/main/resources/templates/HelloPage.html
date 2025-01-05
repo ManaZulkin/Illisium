@@ -57,7 +57,7 @@
     </div>
 
     <div class="sing-up" style="display: none">
-        <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+        <form th:method="POST" th:action="@{/registration}" th:object="${person}">
             <label>Введіть ім'я користувача:
                 <input th:placeholder="Name" type="text" th:field="*{username}" />
             </label>

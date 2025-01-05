@@ -18,7 +18,6 @@ import com.illisium.modelsDB.equpment.Weapon;
 import com.illisium.modelsDB.session.Battle;
 import com.illisium.modelsDB.session.OpenRoom;
 import com.illisium.modelsDB.session.Session;
-import com.illisium.resources.utilit.SessionUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -43,10 +42,9 @@ public class HelloControler {
     private final CharacterRepository characterRepository;
     private final AdminService adminService;
     private final AdminSession adminSession;
-    private final SessionUtil sessionUtil;
 
     @Autowired
-    public HelloControler(RegistrationService registrationService, PersonValidator personValidator, SessionRepository sessionRepository, OpenRoomRepository openRoomRepository, CharacterRepository characterRepository, AdminService adminService, AdminSession adminSession, SessionUtil sessionUtil) {
+    public HelloControler(RegistrationService registrationService, PersonValidator personValidator, SessionRepository sessionRepository, OpenRoomRepository openRoomRepository, CharacterRepository characterRepository, AdminService adminService, AdminSession adminSession) {
         this.registrationService = registrationService;
         this.personValidator = personValidator;
 
@@ -55,7 +53,6 @@ public class HelloControler {
         this.characterRepository = characterRepository;
         this.adminService = adminService;
         this.adminSession = adminSession;
-        this.sessionUtil = sessionUtil;
     }
 
 
@@ -95,11 +92,7 @@ public class HelloControler {
 
         return "gm/startPage";
     }
-//    @PreAuthorize("hasRole('ROLE_USER')")
-//    @GetMapping("/player/startPage")
-//    public String startPagePlayer(){
-//        return "player/startPage";
-//    }
+
 
     @GetMapping("/logout")
     public String logoutPage(){
@@ -134,7 +127,7 @@ public class HelloControler {
     public String performRegistration(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
-            return "/HelloPage";
+            return "redirect:/HelloPage";
         registrationService.register(person);
         return "redirect:/HelloPage";
     }

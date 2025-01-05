@@ -1,22 +1,16 @@
-document.addEventListener('DOMContentLoaded', (event) =>{
+"use strict";
+document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.left-nav button');
-    const divs = document.querySelectorAll('.main-body-div .screen > div');
-
+    const divs = document.querySelectorAll('.main-body-div .screen  div');
     buttons.forEach(button => {
-        button.addEventListener('click', () =>{
+        button.addEventListener('click', () => {
             divs.forEach(div => div.style.display = 'none');
-
             const divToShow = document.querySelector('.' + button.textContent.toLowerCase());
-
-            if (divToShow){
+            if (divToShow) {
                 divToShow.style.display = 'flex';
             }
-        });
-
-        button.addEventListener('click', () =>{
             addLogEntry(button.textContent);
-        } );
-
+        });
     });
 });
-
+//# sourceMappingURL=startPage.js.map

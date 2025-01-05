@@ -1,13 +1,13 @@
-{  "compilerOptions": {
-  "module": "ESNext",
-  "target": "ESNext",
-  "removeComments": false,
-  "outDir": "./src/main/resources/static/ts/js",
-  "sourceMap": true,
-  "noEmitOnError": true,
-  "alwaysStrict": true,
-  "allowUnreachableCode": false
-},
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules", "bin", "build", "gradle", ".idea", ".gradle"]
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "removeComments": false,
+    "outDir": "./src/main/resources/static/js",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "alwaysStrict": true,
+    "allowUnreachableCode": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build", "gradle", ".idea", ".gradle"]
 }

@@ -33,6 +33,7 @@ public class IllisiumApplication {
                         .requestMatchers("/auth/**", "/messege/**").permitAll()
                         .requestMatchers("/css/**", "/").permitAll()
                         .requestMatchers("/js/**", "/").permitAll()
+                        .requestMatchers("/registration").permitAll()
                         .requestMatchers("/gm/**").hasRole("ADMIN")
                         .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().permitAll()

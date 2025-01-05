@@ -1,6 +1,5 @@
 package com.illisium.config.sequrity.myImplemantation;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -20,10 +19,10 @@ import java.util.Map;
 
 public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     protected Log log = LogFactory.getLog(this.getClass());
-    private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();;
+    private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException{
         handle(request, response, authentication);
         clearAuthentificationAttributes(request);
 

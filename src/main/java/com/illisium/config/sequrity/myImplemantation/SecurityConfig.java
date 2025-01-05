@@ -10,9 +10,6 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
-
-
     @Bean
     public SessionRegistry sessionRegistry(){
         return new SessionRegistryImpl();
