@@ -16,14 +16,17 @@ import java.io.Serializable;
 public class Armor implements Serializable, IArmor, Drop {
     @Serial
     private static final  long serialVersionUID = DataUtility.getSerialForClass(new Armor());
+
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
+
     @Id
     @Column(name = "armor_Name")
     private String name = "empty";
+
     @Column(name = "rare")
-    String rare = "";
+    private String rare = "";
     @Id
     @Column(name = "armor_Type")
     private String type = "";
