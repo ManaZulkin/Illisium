@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+app-header{
+  display: block;
+  border: solid;
+}
+
+app-left-menue{
+  display: flex;
+  height: 100%;
+  width: 5%;
+  border: solid;
+}
+
+app-main-bodey{
+  display: block;
+  border: solid red;
+  height: 100%;
+  width: 100%;
+}
+
+app-loger{
+  display: block;
+  border: solid;
+  width: 100%;
+  height: 10%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  border: solid green;
+  margin: 0;
+  padding: 0;
+  font-family: tahoma, arial, sans-serif, Lucida Sans, verdana;
+}
+
+button{
+  height: 30px;
+  width: 150px;
+  margin-left: 10px;
+}

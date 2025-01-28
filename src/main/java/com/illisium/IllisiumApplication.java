@@ -36,6 +36,7 @@ public class IllisiumApplication {
                         .requestMatchers("/registration").permitAll()
                         .requestMatchers("/gm/**", "/enum/**").hasRole("ADMIN")
                         .requestMatchers("/player/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().permitAll()
         )
                 .formLogin(form -> form.loginPage("/auth/login")
