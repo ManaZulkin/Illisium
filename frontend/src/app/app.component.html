@@ -1,4 +1,7 @@
-<app-header></app-header>
-
-
+<form [formGroup]="form" >
+  <label>Login <input type="text" formControlName="login"></label> <br>
+  <label>Password <input type="password" formControlName="password"></label> <br>
+  <button (click)="onSumbt()" >Login</button>
+</form>
+<button (click)="getFromServer()">Get From Server</button>
 <router-outlet></router-outlet>

@@ -3,11 +3,11 @@ package com.illisium.config.restControllers;
 import com.illisium.config.sequrity.entety.Person;
 import com.illisium.config.sequrity.reposetory.PeopleRepository;
 import com.illisium.modelsDB.equpment.Item;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api")
@@ -26,7 +26,19 @@ public class AngularTest {
     }
 
     @GetMapping("/personForAngular")
-    public Optional<Person> personForAngular() {
+    public Optional<Person> personForAngular()
+    {
         return peopleRepository.findById(1) ;
     }
+
+    @PostMapping("/post")
+    public ResponseEntity<Person> post(@RequestBody Person person) {
+
+        System.out.println("post");
+        System.err.println(person);
+        return ResponseEntity.ok(person) ;
+    }
+
+
 }
+

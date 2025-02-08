@@ -1,36 +1,46 @@
-import { AuthentificationService, Person } from './services/authentification.service';
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from "./components/header/header.component";
+import { Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpCustomService } from './services/http-custom.service';
 
 
 @Component({
 selector: 'app-root',
-  imports: [HeaderComponent, RouterOutlet],
+  imports: [RouterOutlet, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+
 })
 
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit  {
   title = 'frontend';
 
-  constructor(private apiServ: AuthentificationService,){}
+  form : FormGroup;
+  isAuthentificated = false;
 
-  //@ts-ignore
-  pers: Person;
-  ngOnInit(): void {
-
-
-    this.apiServ.getPerson().subscribe(
-      (resp) =>{
-        this.pers = resp;
-        alert(this.pers.username);
-      },
-      (error)=>{
-        console.error('FUck NO!', error);
+  constructor(private formBulder: FormBuilder, private http:HttpCustomService){
+    this.form = formBulder.group(
+      {
+        login: [''],
+        password: ['']
       }
     )
+  }
+  ngOnInit(): void {
+
+  }
+
+  onSumbt(){
+    this.http.createUser({username:'Clone', password:'asdasd'}).subscribe(resp => alert(resp));
+
+
+  }
+
+  getFromServer(){
+    //@ts-ignore
+    this.http.pullUser().subscribe(resp => alert(resp.username));
   }
 
 }
